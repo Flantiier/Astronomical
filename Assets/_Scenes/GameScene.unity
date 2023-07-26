@@ -415,6 +415,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7824986714113787774, guid: 246a824f6c7c6d94295bf30c861197a9,
+        type: 3}
+      propertyPath: gravity
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7824986714113787774, guid: 246a824f6c7c6d94295bf30c861197a9,
+        type: 3}
+      propertyPath: runSpeed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7824986714113787774, guid: 246a824f6c7c6d94295bf30c861197a9,
+        type: 3}
+      propertyPath: walkSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7824986714113787774, guid: 246a824f6c7c6d94295bf30c861197a9,
+        type: 3}
+      propertyPath: maxHorizontalVel
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

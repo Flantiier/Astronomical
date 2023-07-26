@@ -14,22 +14,30 @@ public class FPSController : MonoBehaviour
     [Header("Motion & View")]
     [SerializeField] private float mouseSensitivity = 100f;
     [SerializeField, Range(0f, 0.1f)] private float smoothInputs = 0.05f;
+    [SerializeField, Range(0f, 0.1f)] private float smoothSpeed = 0.05f;
     [SerializeField] private float walkSpeed = 3f;
     [SerializeField] private float runSpeed = 5f;
 
     private Vector2 _lookInputs;
-    private float _xRotation = 0f;
     private Vector2 _rawInputs;
     private Vector2 _currentInputs;
-    private Vector2 _inputsRef;
+    [HideInInspector] private float _xRotation = 0f;
+    [HideInInspector] private Vector2 _inputsRef;
     private Vector3 _movement;
+    private float _currentSpeed;
     #endregion
 
     #region Physics
     [Header("Physics")]
     [SerializeField] private float gravity = 3f;
+    [SerializeField] private float maxHorizontalVel = 20f;
+    private float _appliedGravity;
     #endregion
 
+    #endregion
+
+    #region Properties
+    public bool IsGrounded => _cc.isGrounded;
     #endregion
 
     #region Builts_In
@@ -54,8 +62,9 @@ public class FPSController : MonoBehaviour
 
     private void Update()
     {
-        HandleMovement();
         HandleView();
+        HandleGravity();
+        HandleMovement();
     }
     #endregion
 
@@ -104,24 +113,21 @@ public class FPSController : MonoBehaviour
     }
     #endregion
 
-    #region Methods
+    #region Movement Methods
     /// <summary>
     /// Move the player around
     /// </summary>
     private void HandleMovement()
     {
+        float targetSpeed = GetMovementSpeed();
+        _currentSpeed = Mathf.Lerp(_currentSpeed, targetSpeed, smoothSpeed);
         _currentInputs = Vector2.SmoothDamp(_currentInputs, _rawInputs, ref _inputsRef, smoothInputs);
 
-        if (!_cc.isGrounded)
-            _movement.y -= gravity * Time.deltaTime;
-        else
-        {
-            _movement = transform.forward * _currentInputs.y + transform.right * _currentInputs.x;
-            _movement.y = gravity * 0.05f * Time.deltaTime;
+        if (IsGrounded)
+            _movement = (transform.forward * _currentInputs.y + transform.right * _currentInputs.x) * _currentSpeed;
 
-        }
-
-        _cc.Move(_movement * walkSpeed * Time.deltaTime);
+        _movement.y = _appliedGravity;
+        _cc.Move(_movement * Time.deltaTime);
     }
 
     /// <summary>
@@ -138,6 +144,44 @@ public class FPSController : MonoBehaviour
 
         _camera.transform.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
         transform.Rotate(Vector3.up * mouseX);
+    }
+
+    /// <summary>
+    /// Return the corresponding movement speed based on pressed inputs
+    /// </summary>
+    private float GetMovementSpeed()
+    {
+        if (_cc.isGrounded)
+        {
+            if (_rawInputs.magnitude >= 0.5f && _inputs.currentActionMap.FindAction("Run").IsPressed())
+                return runSpeed;
+            else if (_rawInputs.magnitude >= 0.01f)
+                return walkSpeed;
+
+            Debug.Log("Grounded");
+        }
+
+        Debug.Log("Not grounded");
+        return 0f;
+    }
+    #endregion
+
+    #region Physics Methods
+    /// <summary>
+    /// Handle gravity value applied on player
+    /// </summary>
+    private void HandleGravity()
+    {
+        //In air gravity
+        if (!_cc.isGrounded)
+        {
+            if (_appliedGravity > -maxHorizontalVel)
+                _appliedGravity -= gravity * Time.deltaTime;
+
+            return;
+        }
+
+        _appliedGravity = -gravity * 0.5f;
     }
     #endregion
 }
