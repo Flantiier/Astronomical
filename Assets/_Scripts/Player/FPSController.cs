@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(PlayerInput))]
@@ -17,12 +18,13 @@ public class FPSController : MonoBehaviour
     [SerializeField, Range(0f, 0.1f)] private float smoothSpeed = 0.05f;
     [SerializeField] private float walkSpeed = 3f;
     [SerializeField] private float runSpeed = 5f;
+    [SerializeField] private float jumpForce = 5f;
 
-    private Vector2 _lookInputs;
-    private Vector2 _rawInputs;
-    private Vector2 _currentInputs;
-    [HideInInspector] private float _xRotation = 0f;
+    [HideInInspector] private Vector2 _rawInputs;
     [HideInInspector] private Vector2 _inputsRef;
+    [HideInInspector] private float _xRotation = 0f;
+    private Vector2 _lookInputs;
+    private Vector2 _currentInputs;
     private Vector3 _movement;
     private float _currentSpeed;
     #endregion
@@ -31,7 +33,7 @@ public class FPSController : MonoBehaviour
     [Header("Physics")]
     [SerializeField] private float gravity = 3f;
     [SerializeField] private float maxHorizontalVel = 20f;
-    private float _appliedGravity;
+    [HideInInspector] private float _airTime = 1;
     #endregion
 
     #endregion
@@ -63,7 +65,6 @@ public class FPSController : MonoBehaviour
     private void Update()
     {
         HandleView();
-        HandleGravity();
         HandleMovement();
     }
     #endregion
@@ -89,6 +90,7 @@ public class FPSController : MonoBehaviour
         _inputs.currentActionMap.FindAction("Move").canceled += OnMove;
         _inputs.currentActionMap.FindAction("Look").performed += OnLook;
         _inputs.currentActionMap.FindAction("Look").canceled += OnLook;
+        _inputs.currentActionMap.FindAction("Jump").started += OnJump;
     }
 
     /// <summary>
@@ -100,16 +102,17 @@ public class FPSController : MonoBehaviour
         _inputs.currentActionMap.FindAction("Move").canceled -= OnMove;
         _inputs.currentActionMap.FindAction("Look").performed -= OnLook;
         _inputs.currentActionMap.FindAction("Look").canceled -= OnLook;
+        _inputs.currentActionMap.FindAction("Jump").started -= OnJump;
     }
 
-    private void OnMove(InputAction.CallbackContext ctx)
+    private void OnMove(InputAction.CallbackContext ctx) => _rawInputs = ctx.ReadValue<Vector2>();
+    private void OnLook(InputAction.CallbackContext ctx) => _lookInputs = ctx.ReadValue<Vector2>();
+    private void OnJump(InputAction.CallbackContext ctx)
     {
-        _rawInputs = ctx.ReadValue<Vector2>();
-    }
+        if (!IsGrounded)
+            return;
 
-    private void OnLook(InputAction.CallbackContext ctx)
-    {
-        _lookInputs = ctx.ReadValue<Vector2>();
+        _movement.y = jumpForce;
     }
     #endregion
 
@@ -123,11 +126,39 @@ public class FPSController : MonoBehaviour
         _currentSpeed = Mathf.Lerp(_currentSpeed, targetSpeed, smoothSpeed);
         _currentInputs = Vector2.SmoothDamp(_currentInputs, _rawInputs, ref _inputsRef, smoothInputs);
 
-        if (IsGrounded)
-            _movement = (transform.forward * _currentInputs.y + transform.right * _currentInputs.x) * _currentSpeed;
+        //Get movement vector
+        Vector3 direction = (transform.forward * _currentInputs.y + transform.right * _currentInputs.x) * _currentSpeed;
+        Vector3 movement = new Vector3(direction.x, _movement.y, direction.z);
+        _movement = Vector3.Lerp(_movement, movement, smoothInputs);
 
-        _movement.y = _appliedGravity;
+        //Apply gravity
+        HandleGravity();
+
         _cc.Move(_movement * Time.deltaTime);
+    }
+
+    /// <summary>
+    /// Handle applied gravity on player
+    /// </summary>
+    private void HandleGravity()
+    {
+        //Not grounded
+        if (!IsGrounded)
+        {
+            _airTime += Time.deltaTime;
+            _movement.y -= (gravity * _airTime) * Time.deltaTime;
+            _movement.y = Mathf.Clamp(_movement.y, -maxHorizontalVel, maxHorizontalVel);
+        }
+        //Grounded
+        else
+        {
+            if (_movement.y <= 0.01f)
+                _movement.y = -gravity;
+
+            //Reset air time
+            if (_airTime > 1)
+                _airTime = 1;
+        }
     }
 
     /// <summary>
@@ -151,37 +182,12 @@ public class FPSController : MonoBehaviour
     /// </summary>
     private float GetMovementSpeed()
     {
-        if (_cc.isGrounded)
-        {
-            if (_rawInputs.magnitude >= 0.5f && _inputs.currentActionMap.FindAction("Run").IsPressed())
-                return runSpeed;
-            else if (_rawInputs.magnitude >= 0.01f)
-                return walkSpeed;
+        if (_rawInputs.magnitude >= 0.5f && _inputs.currentActionMap.FindAction("Run").IsPressed())
+            return runSpeed;
+        else if (_rawInputs.magnitude >= 0.01f)
+            return walkSpeed;
 
-            Debug.Log("Grounded");
-        }
-
-        Debug.Log("Not grounded");
         return 0f;
-    }
-    #endregion
-
-    #region Physics Methods
-    /// <summary>
-    /// Handle gravity value applied on player
-    /// </summary>
-    private void HandleGravity()
-    {
-        //In air gravity
-        if (!_cc.isGrounded)
-        {
-            if (_appliedGravity > -maxHorizontalVel)
-                _appliedGravity -= gravity * Time.deltaTime;
-
-            return;
-        }
-
-        _appliedGravity = -gravity * 0.5f;
     }
     #endregion
 }
