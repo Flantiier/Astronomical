@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(PlayerInput))]
@@ -10,12 +9,13 @@ public class FPSController : MonoBehaviour
     private Transform _camera;
     private CharacterController _cc;
     private PlayerInput _inputs;
+    private Interactor _interactor;
 
     #region Motion
     [Header("Motion & View")]
     [SerializeField] private float mouseSensitivity = 100f;
-    [SerializeField, Range(0f, 0.1f)] private float smoothInputs = 0.05f;
-    [SerializeField, Range(0f, 0.1f)] private float smoothSpeed = 0.05f;
+    [SerializeField, Range(0f, 0.5f)] private float smoothInputs = 0.05f;
+    [SerializeField, Range(0f, 0.5f)] private float smoothSpeed = 0.05f;
     [SerializeField] private float walkSpeed = 3f;
     [SerializeField] private float runSpeed = 5f;
     [SerializeField] private float jumpForce = 5f;
@@ -48,6 +48,7 @@ public class FPSController : MonoBehaviour
         _inputs = GetComponent<PlayerInput>();
         _cc = GetComponent<CharacterController>();
         _camera = GetComponentInChildren<Camera>().transform;
+        _interactor = GetComponent<Interactor>();
     }
 
     private void OnEnable()
@@ -91,6 +92,7 @@ public class FPSController : MonoBehaviour
         _inputs.currentActionMap.FindAction("Look").performed += OnLook;
         _inputs.currentActionMap.FindAction("Look").canceled += OnLook;
         _inputs.currentActionMap.FindAction("Jump").started += OnJump;
+        _inputs.currentActionMap.FindAction("Interact").started += _interactor.OnInteract;
     }
 
     /// <summary>
@@ -103,6 +105,7 @@ public class FPSController : MonoBehaviour
         _inputs.currentActionMap.FindAction("Look").performed -= OnLook;
         _inputs.currentActionMap.FindAction("Look").canceled -= OnLook;
         _inputs.currentActionMap.FindAction("Jump").started -= OnJump;
+        _inputs.currentActionMap.FindAction("Interact").started -= _interactor.OnInteract;
     }
 
     private void OnMove(InputAction.CallbackContext ctx) => _rawInputs = ctx.ReadValue<Vector2>();
