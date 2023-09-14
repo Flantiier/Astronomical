@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class TestInteractibleInterface : InteractibleObject, IInteractible
+public class TestInteractableInterface : InteractableObject, IInteractible
 {
     public void Interact() => Debug.Log("Interacting with object!");
 }

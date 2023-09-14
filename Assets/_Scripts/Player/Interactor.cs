@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,9 +10,23 @@ public class Interactor : MonoBehaviour
     [SerializeField] private LayerMask interactable;
     private Transform _cam;
 
-    private bool _canInteract = false;
     private RaycastHit _hitInfo;
-    private IPickable _carriedItem;
+    private InteractableObject _inRangeObject;
+    public static event Action<InteractableObject> OnInteractableItemChanged;
+    #endregion
+
+    #region Properties
+    public bool CanInteract { get; private set; }
+    public IPickable CarriedItem { get; private set; }
+    public InteractableObject InRangeObject
+    {
+        get => _inRangeObject;
+        set
+        {
+            _inRangeObject = value;
+            OnInteractableItemChanged.Invoke(_inRangeObject);
+        }
+    }
     #endregion
 
     #region Builts_In
@@ -22,8 +37,8 @@ public class Interactor : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _canInteract = ShootingRaycast();
-        Debug.Log(_canInteract);
+        CanInteract = ShootingRaycast();
+        Debug.Log(CanInteract);
     }
     #endregion
 
@@ -33,7 +48,7 @@ public class Interactor : MonoBehaviour
     /// </summary>
     public void OnInteract(InputAction.CallbackContext ctx)
     {
-        if (!_canInteract)
+        if (!CanInteract)
             return;
 
         GameObject hitObj = _hitInfo.collider.gameObject;
@@ -42,7 +57,7 @@ public class Interactor : MonoBehaviour
         if (hitObj.TryGetComponent(out IPickable pickableItem))
             PickUpItem(pickableItem);
         //Interact with other objects
-        else if(hitObj.TryGetComponent(out IInteractible interactibleItem))
+        else if (hitObj.TryGetComponent(out IInteractible interactibleItem))
             interactibleItem.Interact();
     }
 
@@ -53,7 +68,10 @@ public class Interactor : MonoBehaviour
     {
         Ray ray = new Ray(_cam.position, _cam.forward * interactRange);
         Debug.DrawRay(ray.origin, ray.direction * interactRange, Color.red);
-        return Physics.Raycast(ray, out _hitInfo, interactRange, interactable, QueryTriggerInteraction.Collide);
+        bool canInteract = Physics.Raycast(ray, out _hitInfo, interactRange, interactable, QueryTriggerInteraction.Collide);
+
+        InRangeObject = canInteract ? _hitInfo.collider.gameObject.GetComponent<InteractableObject>() : null;
+        return canInteract;
     }
 
     /// <summary>
@@ -61,10 +79,10 @@ public class Interactor : MonoBehaviour
     /// </summary>
     private void PickUpItem(IPickable item)
     {
-        if (_carriedItem != null)
-            _carriedItem.Drop(item.Transform);
+        if (CarriedItem != null)
+            CarriedItem.Drop(item.Transform);
 
-        _carriedItem = item;
+        CarriedItem = item;
         item.PickUp(playerHand);
     }
     #endregion

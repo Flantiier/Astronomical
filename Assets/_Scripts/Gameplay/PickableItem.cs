@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class PickableItem : InteractibleObject, IPickable
+public class PickableItem : InteractableObject, IPickable
 {
     #region Variables
     private Rigidbody _rb;
@@ -15,6 +15,8 @@ public class PickableItem : InteractibleObject, IPickable
     protected override void Awake()
     {
         base.Awake();
+        interactMessage = $"Pick up {gameObject.name}.";
+
         _rb = GetComponent<Rigidbody>();
         UseGravity(true);
     }
