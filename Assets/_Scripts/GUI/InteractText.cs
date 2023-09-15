@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using Utils;
-using System.Collections;
 
 public class InteractText : MonoBehaviour
 {
@@ -34,7 +33,7 @@ public class InteractText : MonoBehaviour
     private void ShowInteractaText(InteractableObject item)
     {
         background.enabled = item;
-        Utilities.Inputs.GetCurrentInputForAction(playerInput, "Interact", out string input);
+        string input = Utilities.Inputs.GetCurrentInputForAction(playerInput, "Interact");
         feedbackText.text = item ? $"Press <b>{input}</b> to <b>{item.Message}</b>" : "";
     }
     #endregion

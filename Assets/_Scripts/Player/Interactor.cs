@@ -56,7 +56,7 @@ public class Interactor : MonoBehaviour
         if (hitObj.TryGetComponent(out IPickable pickableItem))
             PickUpItem(pickableItem);
         //Interact with other objects
-        else if (hitObj.TryGetComponent(out IInteractible interactibleItem))
+        else if (hitObj.TryGetComponent(out IInteractible interactibleItem) && interactibleItem.IsInteractable)
             interactibleItem.Interact();
     }
 
@@ -67,10 +67,12 @@ public class Interactor : MonoBehaviour
     {
         Ray ray = new Ray(_cam.position, _cam.forward * interactRange);
         Debug.DrawRay(ray.origin, ray.direction * interactRange, Color.red);
-        bool canInteract = Physics.Raycast(ray, out _hitInfo, interactRange, interactable, QueryTriggerInteraction.Collide);
+        bool raycastHit = Physics.Raycast(ray, out _hitInfo, interactRange, interactable, QueryTriggerInteraction.Collide);
 
-        InRangeObject = canInteract ? _hitInfo.collider.gameObject.GetComponent<InteractableObject>() : null;
-        return canInteract;
+        InteractableObject hitObj = raycastHit ? _hitInfo.collider.gameObject.GetComponent<InteractableObject>() : null;
+        InRangeObject = hitObj && hitObj.IsInteractable ? hitObj : null;
+
+        return raycastHit;
     }
 
     /// <summary>

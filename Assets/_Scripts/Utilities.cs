@@ -281,11 +281,11 @@ namespace Utils
             /// </summary>
             /// <param name="playerInput">Player input component</param>
             /// <param name="action">InputAction to get binding from</param>
-            public static void GetCurrentInputForAction(PlayerInput playerInput, string action, out string input)
+            public static string GetCurrentInputForAction(PlayerInput playerInput, string action)
             {
                 InputActionAsset actions = playerInput.actions;
                 int binding = actions[action].GetBindingIndex(playerInput.currentControlScheme);
-                actions[action].GetBindingDisplayString(binding, out string device, out input);
+                return actions[action].GetBindingDisplayString(binding);
             }
         }
         #endregion
