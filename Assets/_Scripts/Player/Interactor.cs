@@ -38,7 +38,6 @@ public class Interactor : MonoBehaviour
     private void FixedUpdate()
     {
         CanInteract = ShootingRaycast();
-        Debug.Log(CanInteract);
     }
     #endregion
 
