@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: 88ae796befc40fe4c93df036bee65dbb, type: 2}
-  light: {fileID: 6545829147259308592}
+  spotlight: {fileID: 6545829147259308592}
 --- !u!1 &5797797509045845114
 GameObject:
   m_ObjectHideFlags: 0

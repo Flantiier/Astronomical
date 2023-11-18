@@ -1,8 +1,11 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SolarSystem : MonoBehaviour
 {
     [SerializeField] private PlanetContainer[] containers;
+
+    [SerializeField] private UnityEvent SolarSystemValid;
 
     private void OnEnable()
     {
@@ -35,6 +38,8 @@ public class SolarSystem : MonoBehaviour
 
         Debug.Log("Solar System correct !");
         DisableVessels();
+
+        SolarSystemValid?.Invoke();
     }
 
     private void DisableVessels()

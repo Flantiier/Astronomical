@@ -1,6 +1,5 @@
 using UnityEngine;
 
-[ExecuteInEditMode]
 public class TextureOverrider : MonoBehaviour
 {
     [SerializeField] private Texture2D texture;
