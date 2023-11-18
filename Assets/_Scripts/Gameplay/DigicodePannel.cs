@@ -1,16 +1,21 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DigicodePannel : MonoBehaviour
 {
-    [SerializeField] private DigicodeButton[] digicodeButtons;
+    [Header("Code properties")]
     [SerializeField] private string validCode = "1111";
+    [SerializeField] private DigicodeButton[] digicodeButtons;
 
+    [Header("Code text properties")]
     [SerializeField] private TextMeshProUGUI screenText;
     [SerializeField] private DigicodeScreenText screenTextProperties;
 
-    private string _currentCode = "";
+    [Header("Events")]
+    [SerializeField] private UnityEvent ValidCodeEntered;
 
+    private string _currentCode = "";
 
     private void Start()
     {
@@ -64,13 +69,16 @@ public class DigicodePannel : MonoBehaviour
 
         if (hasValidCode)
         {
-            EnableDigicodeButtons(false);
             Debug.Log("Valid code entered !");
+
+            EnableDigicodeButtons(false);
+            ValidCodeEntered?.Invoke();
         }
         else
         {
-            _currentCode = "";
             Debug.Log("Wrong code entered");
+
+            _currentCode = "";
         }
     }
 

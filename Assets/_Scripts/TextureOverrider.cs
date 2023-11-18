@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class TextureOverrider : MonoBehaviour
 {
     [SerializeField] private Texture2D texture;
@@ -11,10 +12,11 @@ public class TextureOverrider : MonoBehaviour
 
     private void LoadTexture()
     {
-        if (!texture)
+        MeshRenderer renderer = GetComponent<MeshRenderer>();
+
+        if (!texture || !renderer || !renderer.sharedMaterial)
             return;
 
-        Renderer renderer = GetComponent<Renderer>();
         Material instance = new Material(renderer.sharedMaterial);
 
         instance.mainTexture = texture;
