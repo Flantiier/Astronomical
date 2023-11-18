@@ -178,10 +178,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1391511771057360445}
+  - component: {fileID: 221771907585385656}
   - component: {fileID: 7824986714113787774}
+  - component: {fileID: 7700486355748211847}
   - component: {fileID: 234597683756602841}
   - component: {fileID: 2338271711022375173}
-  - component: {fileID: 6181838471681588110}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -206,6 +207,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &221771907585385656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6463503845622764411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc20f09b92e8f124aa6de0f2366cbb7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7824986714113787774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,14 +231,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fc4781e677dcca44a0ef1bdb6d5f36d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputReader: {fileID: 11400000, guid: 91a48c9d44f566e4788553353288949e, type: 2}
   mouseSensitivity: 20
   smoothInputs: 0.15
-  smoothSpeed: 0.1
+  smoothSpeed: 0.15
   walkSpeed: 5
   runSpeed: 8
-  jumpForce: 4
-  gravity: 9.81
-  maxHorizontalVel: 20
+  gravity: 12
+--- !u!114 &7700486355748211847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6463503845622764411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abe51e53a7206a441948729250471895, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputReader: {fileID: 11400000, guid: 91a48c9d44f566e4788553353288949e, type: 2}
+  interactRange: 3
+  handTransform: {fileID: 8617877953115504608}
 --- !u!114 &234597683756602841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,9 +278,29 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 979807ac-799c-496d-98d1-4c377969ce35
+    m_ActionName: Gameplay/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3269db27-9b96-4238-a2d5-db3d9be49b5e
+    m_ActionName: Gameplay/Look[/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fea8cc70-0a7a-4589-9666-9af169a3432b
+    m_ActionName: Gameplay/Run[/Keyboard/leftShift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 42fe5a21-05cb-440a-ba8c-97f79c01b8bd
+    m_ActionName: Gameplay/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6d96a56a-0232-4df3-8c72-11384e3746ab
+    m_ActionName: Gameplay/Interact[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: MnK
+  m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
@@ -283,23 +330,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &6181838471681588110
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6463503845622764411}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 106c1aa2c6ac07a4dbe44a723f163eff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerHand: {fileID: 8617877953115504608}
-  interactRange: 2
-  interactable:
-    serializedVersion: 2
-    m_Bits: 1024
 --- !u!1 &6687692323127958707
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,33 +1,53 @@
 using UnityEngine;
+using UnityEngine.Events;
 
-public class CircuitBreaker : InteractableObject
+public class CircuitBreaker : MonoBehaviour, IInteractable
 {
-    #region Variables
-    [SerializeField] private GameEvent circuitStartedEvent;
-	private Animator _animator;
-    #endregion
+    [SerializeField] private UnityEvent powerOnEvent;
+    private Animator _animator;
 
-    #region Builts_In
-    protected override void Awake()
+    public bool IsInteractable { get; set; } = true;
+
+    private void Awake()
     {
-        base.Awake();
-        _animator = GetComponent<Animator>();
-        _animator.enabled = false;
+        _animator = GetComponentInChildren<Animator>();
     }
-    #endregion
 
-    #region Methods
-    public override void Interact()
+    public void Interact(PlayerInteract interactor)
+    {
+        if (!IsInteractable)
+            return;
+
+        Debug.Log("Interact with Circuit Breaker ");
+
+        PlayPowerOnFeedbacks();
+        RaisePowerOnEvent();
+
+        IsInteractable = false;
+    }
+
+    /// <summary>
+    /// Play animation, sfx and particules
+    /// </summary>
+    private void PlayPowerOnFeedbacks()
     {
         _animator.enabled = true;
-        CanInteractWith(false);
+        //Play SFX
+        //Play particules
     }
 
-    public void CircuitStarted()
+    private void RaisePowerOnEvent()
     {
-        //Raise an event
-        circuitStartedEvent.Raise();
-        Debug.Log("Starting circuit breaker, electricity should be on!");
+        powerOnEvent?.Invoke();
     }
-    #endregion
+
+    public void PowerEventTest()
+    {
+        Debug.Log("Power has been activated !");
+    }
+
+    public string GetInteractText()
+    {
+        return "Turn on the power.";
+    }
 }

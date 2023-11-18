@@ -6,124 +6,84 @@ using UnityEngine.InputSystem;
 public class FPSController : MonoBehaviour
 {
     #region Variables
-    private Transform _camera;
-    private CharacterController _cc;
-    private PlayerInput _inputs;
-    private Interactor _interactor;
+    [SerializeField] private InputReader inputReader;
 
-    #region Motion
     [Header("Motion & View")]
     [SerializeField] private float mouseSensitivity = 100f;
     [SerializeField, Range(0f, 0.5f)] private float smoothInputs = 0.05f;
     [SerializeField, Range(0f, 0.5f)] private float smoothSpeed = 0.05f;
     [SerializeField] private float walkSpeed = 3f;
     [SerializeField] private float runSpeed = 5f;
-    [SerializeField] private float jumpForce = 5f;
 
-    [HideInInspector] private Vector2 _rawInputs;
-    [HideInInspector] private Vector2 _inputsRef;
-    [HideInInspector] private float _xRotation = 0f;
-    private Vector2 _lookInputs;
-    private Vector2 _currentInputs;
-    private Vector3 _movement;
-    private float _currentSpeed;
-    #endregion
-
-    #region Physics
     [Header("Physics")]
     [SerializeField] private float gravity = 3f;
-    [SerializeField] private float maxHorizontalVel = 20f;
-    [HideInInspector] private float _airTime = 1;
-    #endregion
 
-    #endregion
+    private Transform _camera;
+    private CharacterController _cc;
 
-    #region Properties
-    public bool IsGrounded => _cc.isGrounded;
+    private Vector2 _rawInputs;
+    private Vector2 _lookInputs;
+    private bool _isRunning;
+
+    private Vector2 _inputsRef;
+    private Vector2 _currentInputs;
+
+    private float _xRotation = 0f;
+
+    private Vector3 _movement;
+    private float _currentSpeed;
+    private float _airTime = 1;
+
+    private bool _inputsDisabled = false;
     #endregion
 
     #region Builts_In
     private void Awake()
     {
-        _inputs = GetComponent<PlayerInput>();
         _cc = GetComponent<CharacterController>();
         _camera = GetComponentInChildren<Camera>().transform;
-        _interactor = GetComponent<Interactor>();
     }
 
     private void OnEnable()
     {
-        EnableInputs(true);
-        SubscribeToInputs();
+        inputReader.MoveEvent += OnMove;
+        inputReader.LookEvent += OnLook;
+
+        inputReader.RunEvent += OnRun;
+        inputReader.RunCancelledEvent += OnRunCancelled;
     }
 
     private void OnDisable()
     {
-        EnableInputs(false);
-        UnsubscribeToInputs();
+        inputReader.MoveEvent -= OnMove;
+        inputReader.LookEvent -= OnLook;
+
+        inputReader.RunEvent -= OnRun;
+        inputReader.RunCancelledEvent -= OnRunCancelled;
     }
 
     private void Update()
     {
-        HandleView();
-        HandleMovement();
-    }
-    #endregion
-
-    #region Inputs Methods
-    /// <summary>
-    /// Enable or disable player inputs
-    /// </summary>
-    private void EnableInputs(bool enabled)
-    {
-        if (enabled)
-            _inputs.ActivateInput();
-        else
-            _inputs.DeactivateInput();
-    }
-
-    /// <summary>
-    /// Subscribe methods to player actions
-    /// </summary>
-    private void SubscribeToInputs()
-    {
-        _inputs.currentActionMap.FindAction("Move").performed += OnMove;
-        _inputs.currentActionMap.FindAction("Move").canceled += OnMove;
-        _inputs.currentActionMap.FindAction("Look").performed += OnLook;
-        _inputs.currentActionMap.FindAction("Look").canceled += OnLook;
-        _inputs.currentActionMap.FindAction("Jump").started += OnJump;
-        _inputs.currentActionMap.FindAction("Interact").started += _interactor.OnInteract;
-    }
-
-    /// <summary>
-    /// Unsubscribe methods to player actions
-    /// </summary>
-    private void UnsubscribeToInputs()
-    {
-        _inputs.currentActionMap.FindAction("Move").performed -= OnMove;
-        _inputs.currentActionMap.FindAction("Move").canceled -= OnMove;
-        _inputs.currentActionMap.FindAction("Look").performed -= OnLook;
-        _inputs.currentActionMap.FindAction("Look").canceled -= OnLook;
-        _inputs.currentActionMap.FindAction("Jump").started -= OnJump;
-        _inputs.currentActionMap.FindAction("Interact").started -= _interactor.OnInteract;
-    }
-
-    private void OnMove(InputAction.CallbackContext ctx) => _rawInputs = ctx.ReadValue<Vector2>();
-    private void OnLook(InputAction.CallbackContext ctx) => _lookInputs = ctx.ReadValue<Vector2>();
-    private void OnJump(InputAction.CallbackContext ctx)
-    {
-        if (!IsGrounded)
+        if (_inputsDisabled)
             return;
 
-        _movement.y = jumpForce;
+        HandlePlayerMovement();
+        HandlePlayerFPSView();
     }
     #endregion
 
-    #region Movement Methods
+    #region Methods
+    //INPUT LISTENERS
+    private void OnMove(Vector2 inputs) => _rawInputs = inputs;
+    private void OnLook(Vector2 inputs) => _lookInputs = inputs;
+    private void OnRun() => _isRunning = true;
+    private void OnRunCancelled() => _isRunning = false;
+
+
     /// <summary>
     /// Move the player around
     /// </summary>
-    private void HandleMovement()
+    private void HandlePlayerMovement()
     {
         float targetSpeed = GetMovementSpeed();
         _currentSpeed = Mathf.Lerp(_currentSpeed, targetSpeed, smoothSpeed);
@@ -131,12 +91,12 @@ public class FPSController : MonoBehaviour
 
         //Get movement vector
         Vector3 direction = (transform.forward * _currentInputs.y + transform.right * _currentInputs.x) * _currentSpeed;
-        Vector3 movement = new Vector3(direction.x, _movement.y, direction.z);
-        _movement = Vector3.Lerp(_movement, movement, smoothInputs);
+        _movement = new Vector3(Mathf.Lerp(_movement.x, direction.x, smoothInputs), _movement.y, Mathf.Lerp(_movement.z, direction.z, smoothInputs));
 
         //Apply gravity
         HandleGravity();
 
+        //Move character
         _cc.Move(_movement * Time.deltaTime);
     }
 
@@ -146,17 +106,16 @@ public class FPSController : MonoBehaviour
     private void HandleGravity()
     {
         //Not grounded
-        if (!IsGrounded)
+        if (!IsGrounded())
         {
             _airTime += Time.deltaTime;
             _movement.y -= (gravity * _airTime) * Time.deltaTime;
-            _movement.y = Mathf.Clamp(_movement.y, -maxHorizontalVel, maxHorizontalVel);
         }
         //Grounded
         else
         {
             if (_movement.y <= 0.01f)
-                _movement.y = -gravity;
+                _movement.y = -gravity * 0.1f;
 
             //Reset air time
             if (_airTime > 1)
@@ -167,7 +126,7 @@ public class FPSController : MonoBehaviour
     /// <summary>
     /// Rotate the player and its camera
     /// </summary>
-    private void HandleView()
+    private void HandlePlayerFPSView()
     {
         float mouseX = _lookInputs.x * mouseSensitivity * Time.deltaTime;
         float mouseY = _lookInputs.y * mouseSensitivity * Time.deltaTime;
@@ -185,12 +144,38 @@ public class FPSController : MonoBehaviour
     /// </summary>
     private float GetMovementSpeed()
     {
-        if (_rawInputs.magnitude >= 0.5f && _inputs.currentActionMap.FindAction("Run").IsPressed())
+        if (_rawInputs.magnitude >= 0.5f && _isRunning)
             return runSpeed;
         else if (_rawInputs.magnitude >= 0.01f)
             return walkSpeed;
 
         return 0f;
+    }
+
+    /// <summary>
+    /// Return if the character controller is grounded or not
+    /// </summary>
+    private bool IsGrounded() => _cc.isGrounded;
+
+    /// <summary>
+    /// Reset character velocity and movement vector
+    /// </summary>
+    private void ResetCharacterVelocity()
+    {
+        _movement = Vector3.zero;
+        _currentInputs = Vector3.zero;
+        _currentSpeed = 0f;
+    }
+
+    /// <summary>
+    /// Method to disable player movement
+    /// </summary>
+    public void EnablePlayerInputs(bool enabled)
+    {
+        _inputsDisabled = !enabled;
+
+        if (!enabled)
+            ResetCharacterVelocity();
     }
     #endregion
 }
