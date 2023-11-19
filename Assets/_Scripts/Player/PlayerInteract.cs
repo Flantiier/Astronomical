@@ -5,6 +5,7 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField] private InputReader inputReader;
 
     [SerializeField] private float interactRange = 3f;
+    [SerializeField] private LayerMask interactMask;
 
     [SerializeField] private Transform handTransform;
     private IPickable _carriedObject;
@@ -33,7 +34,7 @@ public class PlayerInteract : MonoBehaviour
         Vector3 origin = camTransform.position;
         Vector3 direction = camTransform.forward;
 
-        if (Physics.Raycast(origin, direction, out RaycastHit hitInfo, interactRange))
+        if (Physics.Raycast(origin, direction, out RaycastHit hitInfo, interactRange, interactMask))
         {
             if (hitInfo.collider.TryGetComponent(out interactable) && interactable.IsInteractable)
                 return interactable;
