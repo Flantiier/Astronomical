@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class LockedCloset : SimpleInteractionObject
+public class LockedObject : SimpleInteractionObject
 {
     [SerializeField] private Padlock padlock;
 

@@ -252,6 +252,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputReader: {fileID: 11400000, guid: 91a48c9d44f566e4788553353288949e, type: 2}
   interactRange: 3
+  interactMask:
+    serializedVersion: 2
+    m_Bits: 1079
   handTransform: {fileID: 8617877953115504608}
 --- !u!114 &234597683756602841
 MonoBehaviour:
