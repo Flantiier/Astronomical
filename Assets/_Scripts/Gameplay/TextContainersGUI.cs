@@ -66,7 +66,7 @@ public class TextContainersGUI : MonoBehaviour
     /// <summary>
     /// Get the previous sentence in text content and update UI
     /// </summary>
-    private void GetPreviousSentence()
+    public void GetPreviousSentence()
     {
         if (_currentIndex <= 0)
             return;
@@ -78,7 +78,7 @@ public class TextContainersGUI : MonoBehaviour
     /// <summary>
     /// Get the next sentence in text content and update UI
     /// </summary>
-    private void GetNextSentence()
+    public void GetNextSentence()
     {
         if (_currentIndex >= _textContent.Length - 1)
             return;
