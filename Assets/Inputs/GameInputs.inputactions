@@ -277,6 +277,74 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Dialogues",
+            "id": "187f7965-27ce-4ee1-838f-e4a08f259a04",
+            "actions": [
+                {
+                    "name": "Next",
+                    "type": "Button",
+                    "id": "45fab9a2-46cd-4c34-a592-7d0f40bcae36",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Previous",
+                    "type": "Button",
+                    "id": "f7c61867-76fa-4603-921c-867e2e50cd24",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ExitDialogue",
+                    "type": "Button",
+                    "id": "e46d6696-b435-4983-880b-cfa425f7fc22",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "911bfa8d-96dc-4836-99ac-7ca9d1e47860",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "MnK",
+                    "action": "Next",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "32a10a4d-e8b4-4d7d-a26e-cc07e841caa6",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "MnK",
+                    "action": "Previous",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "72028e0e-7d8c-479b-82d3-e4d91ec92a41",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "MnK",
+                    "action": "ExitDialogue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

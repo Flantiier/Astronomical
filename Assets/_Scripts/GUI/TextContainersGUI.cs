@@ -1,9 +1,9 @@
 ﻿using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class TextContainersGUI : MonoBehaviour
 {
+    [Header("GUI elements")]
     [SerializeField] private GameObject content;
     [SerializeField] private TextMeshProUGUI textMesh;
     [SerializeField] private GameObject leftArrow, rightArrow;
@@ -11,21 +11,24 @@ public class TextContainersGUI : MonoBehaviour
     private string[] _textContent;
     private int _currentIndex = 0;
 
-    private void Start()
-    {
-        TextContainerObject.ShowTextRequest += ShowContent;
-    }
-
     /// <summary>
     /// Initialize text content and enable GUI
     /// </summary
-    private void ShowContent(string[] content)
+    public void ShowContent(string[] content)
     {
         _textContent = content;
         _currentIndex = 0;
 
         UpdateTextContent();
         EnableContentPanel();
+    }
+
+    /// <summary>
+    /// Hide GUI elements
+    /// </summary>
+    public void HideContent()
+    {
+        content.SetActive(false);
     }
 
     /// <summary>
@@ -93,13 +96,5 @@ public class TextContainersGUI : MonoBehaviour
     private void EnableContentPanel()
     {
         content.SetActive(true);
-    }
-
-    /// <summary>
-    /// Disable the content panel
-    /// </summary>
-    private void DisableContentPanel()
-    {
-        content.SetActive(false);
     }
 }
