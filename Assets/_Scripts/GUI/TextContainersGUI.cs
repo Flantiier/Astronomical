@@ -7,9 +7,17 @@ public class TextContainersGUI : MonoBehaviour
     [SerializeField] private GameObject content;
     [SerializeField] private TextMeshProUGUI textMesh;
     [SerializeField] private GameObject leftArrow, rightArrow;
+    [SerializeField] private int asyncTextDelay = 20;
 
     private string[] _textContent;
     private int _currentIndex = 0;
+
+    private AsyncTextObject _asyncText;
+
+    private void Start()
+    {
+        _asyncText = new AsyncTextObject(textMesh, asyncTextDelay);
+    }
 
     /// <summary>
     /// Initialize text content and enable GUI
@@ -37,7 +45,9 @@ public class TextContainersGUI : MonoBehaviour
     /// <param name="text"> Text content </param>
     private void UpdateTextContent()
     {
-        textMesh.text = GetSentence();
+        string content = GetSentence();
+        _asyncText.StartTextAsync(content);
+
         EnableNavigationArrows();
     }
 

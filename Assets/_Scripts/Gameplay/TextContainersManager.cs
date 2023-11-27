@@ -33,8 +33,6 @@ public class TextContainersManager : MonoBehaviour
     /// </summary>
     private void EnableDialogueInputs()
     {
-        Debug.Log("Inputs enabled");
-
         inputReader.EnableDialogue();
         inputReader.ExitDialogue += DisableContent;
         inputReader.NextDialogue += GUI.GetNextSentence;

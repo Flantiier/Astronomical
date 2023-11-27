@@ -2262,6 +2262,7 @@ MonoBehaviour:
   textMesh: {fileID: 7605881}
   leftArrow: {fileID: 1485411512}
   rightArrow: {fileID: 1577258864}
+  asyncTextDelay: 100
 --- !u!4 &1925624018
 Transform:
   m_ObjectHideFlags: 0
