@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 808611490312568124}
   - component: {fileID: 5489528298371040545}
   - component: {fileID: 4002274858190718885}
-  - component: {fileID: 8520572173762990484}
-  m_Layer: 0
+  - component: {fileID: 8267912552176576784}
+  m_Layer: 12
   m_Name: Tiroir_Bot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,8 +123,8 @@ MonoBehaviour:
   animator: {fileID: 5489528298371040545}
   propertyName: IsOpen
   padlock: {fileID: 0}
---- !u!65 &8520572173762990484
-BoxCollider:
+--- !u!64 &8267912552176576784
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -141,9 +141,10 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.0067338934, y: 0.011082858, z: 0.0030600622}
-  m_Center: {x: 0.16842444, y: -0.19461927, z: 0.004167788}
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1890910595786045333, guid: af5407033f1034148948de97df0dc291, type: 3}
 --- !u!1 &1673671806889696628
 GameObject:
   m_ObjectHideFlags: 0
@@ -262,8 +263,8 @@ GameObject:
   - component: {fileID: 7352993318635201874}
   - component: {fileID: 3957327797650716484}
   - component: {fileID: 3945430336149557785}
-  - component: {fileID: 4916938642716402608}
-  m_Layer: 0
+  - component: {fileID: 5193309943558819621}
+  m_Layer: 12
   m_Name: Tiroir_Mid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -371,8 +372,8 @@ MonoBehaviour:
   interactText: Open/Close drawer.
   animator: {fileID: 3957327797650716484}
   propertyName: IsOpen
---- !u!65 &4916938642716402608
-BoxCollider:
+--- !u!64 &5193309943558819621
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -389,9 +390,10 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.0067338934, y: 0.01110195, z: 0.0030600622}
-  m_Center: {x: 0.16842444, y: -0.19460978, z: 0.007278117}
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5198267681279241171, guid: af5407033f1034148948de97df0dc291, type: 3}
 --- !u!1 &5552019030083641217
 GameObject:
   m_ObjectHideFlags: 0
@@ -557,8 +559,8 @@ GameObject:
   - component: {fileID: 7968634254482077695}
   - component: {fileID: 5996367307726258204}
   - component: {fileID: 4408781836034880822}
-  - component: {fileID: 8489474297404690338}
-  m_Layer: 0
+  - component: {fileID: 3197701776563447432}
+  m_Layer: 12
   m_Name: Tiroir_Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -666,8 +668,8 @@ MonoBehaviour:
   interactText: Open/Close drawer.
   animator: {fileID: 5996367307726258204}
   propertyName: IsOpen
---- !u!65 &8489474297404690338
-BoxCollider:
+--- !u!64 &3197701776563447432
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -684,6 +686,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.0067338934, y: 0.011034792, z: 0.0030600622}
-  m_Center: {x: 0.16842444, y: -0.19464327, z: 0.010380611}
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 6163357941915963767, guid: af5407033f1034148948de97df0dc291, type: 3}

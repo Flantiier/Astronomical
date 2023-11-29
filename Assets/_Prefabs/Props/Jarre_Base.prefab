@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1483704508107118891}
   - component: {fileID: 2829730188706732826}
   - component: {fileID: 8637697247918772178}
-  - component: {fileID: 5709980572458212468}
+  - component: {fileID: 7462520762238711495}
   m_Layer: 0
   m_Name: Jarre_Base
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2829730188706732826
 MeshFilter:
@@ -84,8 +84,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &5709980572458212468
-MeshCollider:
+--- !u!136 &7462520762238711495
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -102,7 +102,8 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -7553716758358721678, guid: d293757c178142a469ce3ddf891d9ffc, type: 3}
+  serializedVersion: 2
+  m_Radius: 0.44243044
+  m_Height: 1.3
+  m_Direction: 1
+  m_Center: {x: -0.003052175, y: 0.4595421, z: -0.000000074505806}

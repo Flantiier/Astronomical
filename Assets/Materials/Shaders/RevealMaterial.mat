@@ -51,8 +51,8 @@ Material:
     m_Ints: []
     m_Floats:
     - _EmissiveIntensity: 10
-    - _LAngle: 30
-    - _LRange: 5
+    - _LAngle: 40
+    - _LRange: 10
     - _LightAngle: 45
     - _Metalness: 0
     - _Normal_Intensity: 1
@@ -63,8 +63,8 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Direction: {r: 0, g: 0, b: 1, a: 0}
     - _EmissiveColor: {r: 1, g: 0.28773582, b: 0.9453838, a: 0}
-    - _LDirection: {r: -0.85648155, g: -0.13205065, b: 0.49900073, a: 0}
-    - _LPosition: {r: -5.9437847, g: 3.015068, b: 7.1412997, a: 0}
+    - _LDirection: {r: -0.76333386, g: -0.124762215, b: -0.6338422, a: 0}
+    - _LPosition: {r: -6.660029, g: 3.015877, b: 6.6324863, a: 0}
     - _LightDirection: {r: 0, g: 0, b: 1, a: 0}
     - _LightPosition: {r: 0, g: 0, b: 0, a: 0}
     - _LigthPosition: {r: 0, g: 0, b: 0, a: 0}

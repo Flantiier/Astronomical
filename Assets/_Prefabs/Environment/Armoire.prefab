@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3595605640518099540}
   - component: {fileID: 26274085196430442}
   - component: {fileID: 8726224803884411246}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Armoire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,7 +174,7 @@ GameObject:
   - component: {fileID: 7131385915638357903}
   - component: {fileID: 7295497526877401906}
   - component: {fileID: 2268723800759299221}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Porte2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -295,7 +295,7 @@ GameObject:
   - component: {fileID: 8581834211000049853}
   - component: {fileID: 8443750451987400008}
   - component: {fileID: 1796451933113182822}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Porte1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
