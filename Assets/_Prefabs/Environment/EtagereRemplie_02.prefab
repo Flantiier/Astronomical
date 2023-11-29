@@ -261,7 +261,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e0be20e0281ccc40b43d870a8bb1489, type: 3}
---- !u!4 &2293639438586905347 stripped
+--- !u!4 &2406147242528245918 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7844491237708070389, guid: 8e0be20e0281ccc40b43d870a8bb1489,
     type: 3}
@@ -283,37 +283,37 @@ PrefabInstance:
     - target: {fileID: 11282344460641987, guid: 64549084fee1c574482c2238698b7fa6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.23
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11282344460641987, guid: 64549084fee1c574482c2238698b7fa6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.999
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11282344460641987, guid: 64549084fee1c574482c2238698b7fa6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8.71
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11282344460641987, guid: 64549084fee1c574482c2238698b7fa6,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9941969
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11282344460641987, guid: 64549084fee1c574482c2238698b7fa6,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11282344460641987, guid: 64549084fee1c574482c2238698b7fa6,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.10757598
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11282344460641987, guid: 64549084fee1c574482c2238698b7fa6,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11282344460641987, guid: 64549084fee1c574482c2238698b7fa6,
         type: 3}
@@ -323,7 +323,7 @@ PrefabInstance:
     - target: {fileID: 11282344460641987, guid: 64549084fee1c574482c2238698b7fa6,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -12.351
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11282344460641987, guid: 64549084fee1c574482c2238698b7fa6,
         type: 3}
@@ -333,7 +333,7 @@ PrefabInstance:
     - target: {fileID: 5290737513627435499, guid: 64549084fee1c574482c2238698b7fa6,
         type: 3}
       propertyPath: m_Name
-      value: Etagere_02 Variant
+      value: EtagereRemplie_02
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -341,7 +341,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 11282344460641987, guid: 64549084fee1c574482c2238698b7fa6,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2293639438586905347}
+      addedObject: {fileID: 2406147242528245918}
     - targetCorrespondingSourceObject: {fileID: 11282344460641987, guid: 64549084fee1c574482c2238698b7fa6,
         type: 3}
       insertIndex: -1

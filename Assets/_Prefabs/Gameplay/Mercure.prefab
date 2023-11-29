@@ -22,7 +22,7 @@ PrefabInstance:
     - target: {fileID: 4478091962453217493, guid: 16c7a900b4794db4c856bc55496adf0e,
         type: 3}
       propertyPath: m_Name
-      value: Mercury
+      value: Mercure
       objectReference: {fileID: 0}
     - target: {fileID: 5778856836897488550, guid: 16c7a900b4794db4c856bc55496adf0e,
         type: 3}
@@ -32,17 +32,17 @@ PrefabInstance:
     - target: {fileID: 5778856836897488550, guid: 16c7a900b4794db4c856bc55496adf0e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.908
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5778856836897488550, guid: 16c7a900b4794db4c856bc55496adf0e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5778856836897488550, guid: 16c7a900b4794db4c856bc55496adf0e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.442
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5778856836897488550, guid: 16c7a900b4794db4c856bc55496adf0e,
         type: 3}
