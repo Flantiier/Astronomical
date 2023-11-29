@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db4b9b46564252f4895490644c121d48, type: 3}
+  m_Name: TextSO_MathTest
+  m_EditorClassIdentifier: 
+  title: Test de Math
+  content:
+  - "On donne 3 inconnues a, b et c.\n\nO\xF9 :\n\nL'\xE9quation de a est : 4 + 3
+    * (8 / 2)\n\nL'\xE9quation de b est : 8 * 3\xB3\n\nL'\xE9quation de c est : \u221A121
+    + \u221A81\n\n\nCalculez a, b et c et r\xE9solvez ce calcul : (a + b) / c"

@@ -4,5 +4,5 @@ using UnityEngine;
 public class TextContainerSO : ScriptableObject
 {
     public string title = "Title";
-    [TextArea(5, 5)] public string[] content = new string[1];
+    [TextArea(18, 18)] public string[] content = new string[1];
 }

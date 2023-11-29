@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db4b9b46564252f4895490644c121d48, type: 3}
+  m_Name: TextSO_SpaceBook
+  m_EditorClassIdentifier: 
+  title: Title
+  content:
+  - "L\u2019espace est d\u2019abord une zone de transit d\u2019objets. Un missile
+    balistique a, en r\xE8gle g\xE9n\xE9rale, une phase exoatmosph\xE9rique, o\xF9
+    il transite par l\u2019espace. Toute puissance qui dispose de missiles de cette
+    nature dans son arsenal utilise donc l\u2019espace \xE0 des fins militaires.
+    L\u2019espace est par ailleurs un lieu de placement d\u2019objets de nature militaire
+    (en dehors des armes), avec des usages et des finalit\xE9s divers. L\u2019espace
+    peut enfin \xEAtre un lieu de placement de certaines armes : il s\u2019agit alors
+    non de militarisation, mais d\u2019arsenalisation (Weaponization) de l\u2019espace.
+    Il peut s\u2019agir d\u2019armes destin\xE9es \xE0 viser des cibles terrestres
+    ou maritimes depuis l\u2019espace, ou bien de l\u2019espace vers l\u2019espace.
+    La militarisation de l\u2019espace est une r\xE9alit\xE9 militaire de longue
+    date, le placement op\xE9rationnel en orbite de syst\xE8mes d\u2019armes avec
+    une capacit\xE9 destructive ne l\u2019est pas."
+  - "Les \xC9tats qui veulent peser sur la sc\xE8ne internationale recherchent une
+    r\xE9elle autonomie strat\xE9gique spatiale, non seulement pour des questions
+    de statut, mais aussi pour disposer d\u2019une capacit\xE9 militaire qui rend
+    les autres plus efficaces (les Am\xE9ricains la rangent dans la cat\xE9gorie
+    des Enablers). Cette autonomie devient de plus en plus essentielle avec l\u2019\xE9volution
+    des modes de conduite de la guerre moderne (munitions de pr\xE9cision, volont\xE9
+    d\u2019empreinte faible au sol\u2026). La contrepartie en est une d\xE9pendance
+    et une vuln\xE9rabilit\xE9 accrues des grandes organisations militaires contemporaines
+    : des actions dites \xAB contre-spatiales \xBB peuvent avoir un effet strat\xE9gique
+    majeur dans un conflit. L\u2019espace est devenu tout autant un \xE9l\xE9ment-cl\xE9
+    de sup\xE9riorit\xE9 militaire, que de faiblesse potentielle."
