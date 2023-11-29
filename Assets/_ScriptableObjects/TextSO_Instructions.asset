@@ -12,5 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db4b9b46564252f4895490644c121d48, type: 3}
   m_Name: TextSO_Instructions
   m_EditorClassIdentifier: 
+  title: La boucle infernale...
   content:
-  - 
+  - "Jour ?? / Mois ?? / Ann\xE9e ??\r\n\r\nAujourd'hui encore, mes exp\xE9riences
+    ont \xE9t\xE9 un fiasco pour la science haha !\r\nPendant que jouais avec le
+    syst\xE8me solaire j'eut une illumination et j'essaya de modifier l'ordre des
+    plan\xEAtes. C'est un peu fou me diras-tu...\r\n\r\nAu d\xE9but tout allait bien
+    mais en r\xE9glant la derni\xE8re plan\xE8te, le temps c'est suspendu. C'est
+    comme ci le monde que nous connaissions avait cess\xE9 d'exister et ses habitants
+    avec...\r\n\r\nApr\xE8s ma b\xEAtise j'ai imm\xE9diatement fui de peur, tu sais
+    comment je suis dans ces moments l\xE0. Je compte sur toi pour r\xE9gler cette
+    boucle temporelle et ainsi r\xE9cup\xE9rer l'ancien monde.\r"
+  - "La science vaincra, tout le savoir dont tu as besoin est dans notre observatoire.
+    Bonne chance, je t'attend \xE0 la sortie.\r\n\r\nProf. Zub, ton mentor."

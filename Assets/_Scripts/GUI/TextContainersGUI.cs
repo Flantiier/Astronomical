@@ -19,6 +19,7 @@ public class TextContainersGUI : MonoBehaviour
         _textContent = content;
         _currentIndex = 0;
 
+        UpdateTitle();
         UpdateTextContent();
         EnableContentPanel();
     }
@@ -29,6 +30,14 @@ public class TextContainersGUI : MonoBehaviour
     public void HideContent()
     {
         content.SetActive(false);
+    }
+
+    /// <summary>
+    /// Update the value of the title text field
+    /// </summary>
+    private void UpdateTitle()
+    {
+        titleField.text = _textContent.title;
     }
 
     /// <summary>
