@@ -3,14 +3,13 @@ using UnityEngine;
 
 public class TextContainerObject : MonoBehaviour, IInteractable
 {
-    [SerializeField] private string[] content;
-    public static event Action<string[]> SendTextRequest;
+    [SerializeField] private TextContainerSO content;
+    public static event Action<TextContainerSO> SendTextRequest;
 
     public bool IsInteractable { get; set; } = true;
 
     public void Interact(PlayerInteract interactor)
     {
-        Debug.Log("Start reading content");
         SendTextRequest?.Invoke(content);
     }
 

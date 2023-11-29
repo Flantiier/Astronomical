@@ -5,24 +5,16 @@ public class TextContainersGUI : MonoBehaviour
 {
     [Header("GUI elements")]
     [SerializeField] private GameObject content;
-    [SerializeField] private TextMeshProUGUI textMesh;
+    [SerializeField] private TextMeshProUGUI titleField, textField;
     [SerializeField] private GameObject leftArrow, rightArrow;
-    [SerializeField] private int asyncTextDelay = 20;
 
-    private string[] _textContent;
+    private TextContainerSO _textContent;
     private int _currentIndex = 0;
-
-    private AsyncTextObject _asyncText;
-
-    private void Start()
-    {
-        _asyncText = new AsyncTextObject(textMesh, asyncTextDelay);
-    }
 
     /// <summary>
     /// Initialize text content and enable GUI
     /// </summary
-    public void ShowContent(string[] content)
+    public void ShowContent(TextContainerSO content)
     {
         _textContent = content;
         _currentIndex = 0;
@@ -46,7 +38,7 @@ public class TextContainersGUI : MonoBehaviour
     private void UpdateTextContent()
     {
         string content = GetSentence();
-        _asyncText.StartTextAsync(content);
+        textField.text = content;
 
         EnableNavigationArrows();
     }
@@ -56,8 +48,8 @@ public class TextContainersGUI : MonoBehaviour
     /// </summary>
     private string GetSentence()
     {
-        int index = Mathf.Clamp(_currentIndex, 0, _textContent.Length - 1);
-        return _textContent[index];
+        int index = Mathf.Clamp(_currentIndex, 0, _textContent.content.Length - 1);
+        return _textContent.content[index];
     }
 
     /// <summary>
@@ -68,7 +60,7 @@ public class TextContainersGUI : MonoBehaviour
         if (!rightArrow || !leftArrow)
             return;
 
-        int maxIndex = _textContent.Length;
+        int maxIndex = _textContent.content.Length;
         bool canNext = _currentIndex < maxIndex - 1;
         bool canPrevious = _currentIndex > 0 && _currentIndex < maxIndex;
 
@@ -93,7 +85,7 @@ public class TextContainersGUI : MonoBehaviour
     /// </summary>
     public void GetNextSentence()
     {
-        if (_currentIndex >= _textContent.Length - 1)
+        if (_currentIndex >= _textContent.content.Length - 1)
             return;
 
         _currentIndex++;

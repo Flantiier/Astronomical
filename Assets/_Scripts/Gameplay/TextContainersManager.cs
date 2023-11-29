@@ -13,7 +13,7 @@ public class TextContainersManager : MonoBehaviour
     /// <summary>
     /// Show content and enable dialogues inputs
     /// </summary>
-    private void ShowContentFromRequest(string[] content)
+    private void ShowContentFromRequest(TextContainerSO content)
     {
         GUI.ShowContent(content);
         EnableDialogueInputs();
