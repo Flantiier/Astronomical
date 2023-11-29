@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3668341600049116929}
   - component: {fileID: 8401912684265037871}
+  - component: {fileID: 4283886896029810528}
   m_Layer: 0
   m_Name: Lampe_UV
   m_TagString: Untagged
@@ -48,6 +49,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: 88ae796befc40fe4c93df036bee65dbb, type: 2}
   spotlight: {fileID: 6545829147259308592}
+--- !u!65 &4283886896029810528
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3580341134293633459}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.0780291, y: 0.07883091, z: 0.2351081}
+  m_Center: {x: 3.5863068e-10, y: -6.2697364e-10, z: 0.034205407}
 --- !u!1 &5797797509045845114
 GameObject:
   m_ObjectHideFlags: 0
