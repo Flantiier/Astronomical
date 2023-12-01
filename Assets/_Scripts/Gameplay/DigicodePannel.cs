@@ -5,7 +5,6 @@ using UnityEngine.Events;
 public class DigicodePannel : MonoBehaviour
 {
     [Header("Code properties")]
-    [SerializeField] private string validCode = "1111";
     [SerializeField] private DigicodeButton[] digicodeButtons;
 
     [Header("Code text properties")]
@@ -15,10 +14,12 @@ public class DigicodePannel : MonoBehaviour
     [Header("Events")]
     [SerializeField] private UnityEvent ValidCodeEntered;
 
+    private string _validCode;
     private string _currentCode = "";
 
     private void Start()
     {
+        _validCode = GameManager.Instance.GameCode;
         UpdateScreenText();
     }
 
@@ -65,7 +66,7 @@ public class DigicodePannel : MonoBehaviour
         if (!IsCurrentCodeFull())
             return;
 
-        bool hasValidCode = _currentCode == validCode;
+        bool hasValidCode = _currentCode == _validCode;
 
         if (hasValidCode)
         {
@@ -96,7 +97,7 @@ public class DigicodePannel : MonoBehaviour
 
     private bool IsCurrentCodeFull()
     {
-        return _currentCode.Length >= validCode.Length;
+        return _currentCode.Length >= _validCode.Length;
     }
 
 
@@ -128,7 +129,7 @@ public class DigicodePannel : MonoBehaviour
     private void UpdateScreenText()
     {
         string text = _currentCode;
-        int masLength = validCode.Length;
+        int masLength = _validCode.Length;
         screenText.text = screenTextProperties.GenerateScreenTextString(text, masLength);
     }
 }
