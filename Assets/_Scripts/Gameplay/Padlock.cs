@@ -1,17 +1,14 @@
 using System;
 using UnityEngine;
 
-public class Padlock : MonoBehaviour, IInteractable
+public class Padlock : ItemReceptacle, IInteractable
 {
-    [SerializeField] private Key key;
-    [SerializeField] private Transform keyPoint;
+    [SerializeField] private ItemSO requiredKey;
 
     private Animator _animator;
     private Rigidbody _rb;
 
     public event Action PadlockUnlocked;
-
-    public bool IsInteractable { get; set; }
 
     private void Awake()
     {
@@ -23,19 +20,19 @@ public class Padlock : MonoBehaviour, IInteractable
 
     private void FixedUpdate()
     {
-        IPickable pickable = Player.Instance.Interactor.GetPickableItem();
+        IPickable playerObject = Player.Instance.Interactor.GetPickableItem();
 
         //No obj holded
-        if (pickable == null)
+        if (playerObject == null)
             IsInteractable = false;
         else
-            IsInteractable = pickable.GetTransform().TryGetComponent(out Key m_key) && m_key == key;
+            IsInteractable = HasRequiredKey(playerObject);
     }
 
-    public void Interact(PlayerInteract interactor)
+    public override void Interact(PlayerInteract interactor)
     {
         //Drop key inside padlock
-        interactor.DropObjectParent(keyPoint);
+        PlaceObjectInReceptacle(interactor);
         EnablePhysic(true);
         _animator.enabled = true;
 
@@ -43,16 +40,29 @@ public class Padlock : MonoBehaviour, IInteractable
         PadlockUnlocked?.Invoke();
 
         //Disable key and padlock scripts
-        key.IsInteractable = false;
+        _currentItem.IsInteractable = false;
         this.IsInteractable = false;
         enabled = false;
     }
 
-    public string GetInteractText()
+    public override string GetInteractText()
     {
-        return "Use key to open.";
+        return "Open padlock.";
+    }
+    
+    /// <summary>
+    /// Indicate if the player is holdinhg the required object 
+    /// </summary>
+    /// <param name="playerObject"> Object holded by player </param>
+    private bool HasRequiredKey(IPickable playerObject)
+    {
+        return playerObject.GetGameObject().GetComponent<PickableItem>().Item == requiredKey;
     }
 
+    /// <summary>
+    /// Enable rb physics on this object
+    /// </summary>
+    /// <param name="enablePhysic"> Should use gravity </param>
     private void EnablePhysic(bool enablePhysic)
     {
         _rb.useGravity = enablePhysic;

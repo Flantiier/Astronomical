@@ -17,18 +17,41 @@ public class PlanetContainer : ItemReceptacle, IInteractable
 
     private void FixedUpdate()
     {
-        IPickable pickable = Player.Instance.Interactor.GetPickableItem();
+        IPickable playerObject = Player.Instance.Interactor.GetPickableItem();
         bool hasPlanet = _currentItem != null && GetPlanet();
 
-        if (pickable == null && !hasPlanet)
+        if (playerObject == null && !hasPlanet)
             IsInteractable = false;
         else
-            IsInteractable = hasPlanet || pickable.GetTransform().TryGetComponent(out Planet planet);
+            IsInteractable = hasPlanet || playerObject.GetTransform().TryGetComponent(out Planet planet);
     }
 
     public override void Interact(PlayerInteract interactor)
     {
-        base.Interact(interactor);
+        bool playerHasObject = interactor.GetPickableItem() != null;
+        bool vesselHasObject = _currentItem != null;
+
+        //Case 1 : Player has object and vessel don't
+        if (playerHasObject && !vesselHasObject)
+        {
+            PlaceObjectInReceptacle(interactor);
+            PlanetAmount++;
+        }
+        //Case 2 : Vessel has object and player don't
+        else if (!playerHasObject && vesselHasObject)
+        {
+            PickUpFromVessel(interactor);
+        }
+        //Case 3 : Both have an object
+        else
+        {
+            IPickable lastItem = _currentItem;
+            lastItem.IsInteractable = true;
+
+            PlaceObjectInReceptacle(interactor);
+            interactor.PickUpObject(lastItem);
+        }
+
         OnPlanetPlaced?.Invoke();
     }
 
@@ -58,9 +81,9 @@ public class PlanetContainer : ItemReceptacle, IInteractable
         ResetColliderValues();
     }
 
-    protected override void PlaceObjectInVessel(PlayerInteract interactor)
+    protected override void PlaceObjectInReceptacle(PlayerInteract interactor)
     {
-        base.PlaceObjectInVessel(interactor);
+        base.PlaceObjectInReceptacle(interactor);
 
         //Set collider and planet position based on mesh dimensions
         float meshHeight = GetPlanet().GetMeshHeight();

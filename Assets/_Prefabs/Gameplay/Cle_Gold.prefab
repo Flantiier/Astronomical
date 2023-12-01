@@ -13,10 +13,16 @@ PrefabInstance:
       propertyPath: type
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1448978482204138891, guid: 422b3ff56a637bc449deed4ec3d47be0,
+        type: 3}
+      propertyPath: itemDatas
+      value: 
+      objectReference: {fileID: 11400000, guid: 4ee1cb10dc8db214c800bb607b4c2b4d,
+        type: 2}
     - target: {fileID: 3769067939479423727, guid: 422b3ff56a637bc449deed4ec3d47be0,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 3769067939479423727, guid: 422b3ff56a637bc449deed4ec3d47be0,
         type: 3}
@@ -76,7 +82,7 @@ PrefabInstance:
     - target: {fileID: 5352252659966198765, guid: 422b3ff56a637bc449deed4ec3d47be0,
         type: 3}
       propertyPath: m_Name
-      value: Cle_Gold Variant
+      value: Cle_Gold
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

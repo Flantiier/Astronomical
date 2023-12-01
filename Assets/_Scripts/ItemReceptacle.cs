@@ -15,8 +15,7 @@ public class ItemReceptacle : MonoBehaviour, IInteractable
         //Case 1 : Player has object and vessel don't
         if (playerHasObject && !vesselHasObject)
         {
-            PlaceObjectInVessel(interactor);
-            //PlanetAmount++;
+            PlaceObjectInReceptacle(interactor);
         }
         //Case 2 : Vessel has object and player don't
         else if (!playerHasObject && vesselHasObject)
@@ -29,11 +28,9 @@ public class ItemReceptacle : MonoBehaviour, IInteractable
             IPickable lastItem = _currentItem;
             lastItem.IsInteractable = true;
 
-            PlaceObjectInVessel(interactor);
+            PlaceObjectInReceptacle(interactor);
             interactor.PickUpObject(lastItem);
         }
-
-        //OnPlanetPlaced?.Invoke();
     }
 
     public virtual string GetInteractText()
@@ -61,7 +58,7 @@ public class ItemReceptacle : MonoBehaviour, IInteractable
         _currentItem = null;
     }
 
-    protected virtual void PlaceObjectInVessel(PlayerInteract interactor)
+    protected virtual void PlaceObjectInReceptacle(PlayerInteract interactor)
     {
         //Get obj from player and place obj in this vessel
         _currentItem = interactor.GetPickableItem();

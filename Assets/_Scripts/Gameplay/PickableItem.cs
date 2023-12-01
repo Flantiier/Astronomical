@@ -5,7 +5,7 @@ public class PickableItem : MonoBehaviour, IPickable
     [SerializeField] private ItemSO itemDatas;
 
     public bool IsInteractable { get; set; } = true;
-    public ItemSO Item { get; set; }
+    public ItemSO Item => itemDatas;
 
     public void Interact(PlayerInteract interactor)
     {

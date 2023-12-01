@@ -8,10 +8,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 617334989980670537, guid: 65e7ab157bd1eb741a87f372221c8155,
+        type: 3}
+      propertyPath: requiredKey
+      value: 
+      objectReference: {fileID: 11400000, guid: 4ee1cb10dc8db214c800bb607b4c2b4d,
+        type: 2}
     - target: {fileID: 715551315070020034, guid: 65e7ab157bd1eb741a87f372221c8155,
         type: 3}
       propertyPath: m_Name
-      value: Cadenas_Gold
+      value: Cadena_Gold
       objectReference: {fileID: 0}
     - target: {fileID: 4862219133295600499, guid: 65e7ab157bd1eb741a87f372221c8155,
         type: 3}

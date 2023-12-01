@@ -8,10 +8,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1448978482204138891, guid: 422b3ff56a637bc449deed4ec3d47be0,
+        type: 3}
+      propertyPath: itemDatas
+      value: 
+      objectReference: {fileID: 11400000, guid: 7f96d3360045ee44ba026c1b966d7eef,
+        type: 2}
     - target: {fileID: 3769067939479423727, guid: 422b3ff56a637bc449deed4ec3d47be0,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 3769067939479423727, guid: 422b3ff56a637bc449deed4ec3d47be0,
         type: 3}
@@ -71,7 +77,7 @@ PrefabInstance:
     - target: {fileID: 5352252659966198765, guid: 422b3ff56a637bc449deed4ec3d47be0,
         type: 3}
       propertyPath: m_Name
-      value: "Cl\xE9_Silver Variant"
+      value: Cle_Silver
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
