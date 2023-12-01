@@ -18,7 +18,7 @@ public class PlanetContainer : ItemReceptacle, IInteractable
     private void FixedUpdate()
     {
         IPickable pickable = Player.Instance.Interactor.GetPickableItem();
-        bool hasPlanet = GetPlanet();
+        bool hasPlanet = _currentItem != null && GetPlanet();
 
         if (pickable == null && !hasPlanet)
             IsInteractable = false;
@@ -69,7 +69,11 @@ public class PlanetContainer : ItemReceptacle, IInteractable
     }
 
 
-    private Planet GetPlanet() => _currentItem.GetComponent<Planet>();
+    private Planet GetPlanet()
+    {
+        return _currentItem.GetGameObject().GetComponent<Planet>();
+    }
+
     public bool HasRequiredPlanet() => requiredItem == GetPlanet().GetPlanetDatas();
 
 

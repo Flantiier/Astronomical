@@ -14,6 +14,7 @@ public class PickableItem : MonoBehaviour, IPickable
 
     public virtual string GetInteractText() => "Pick up item.";
 
+    public GameObject GetGameObject() => gameObject;
     public Transform GetTransform() => transform;
 
     public virtual void SetObjectParent(Transform parent)

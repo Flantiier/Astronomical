@@ -19,6 +19,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: b9d4613cca854e2498059dab72924e23,
         type: 2}
+    - target: {fileID: 3500433376537325527, guid: 16c7a900b4794db4c856bc55496adf0e,
+        type: 3}
+      propertyPath: itemDatas
+      value: 
+      objectReference: {fileID: 11400000, guid: b9d4613cca854e2498059dab72924e23,
+        type: 2}
     - target: {fileID: 3609692718518579330, guid: 16c7a900b4794db4c856bc55496adf0e,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -27,7 +33,7 @@ PrefabInstance:
     - target: {fileID: 4478091962453217493, guid: 16c7a900b4794db4c856bc55496adf0e,
         type: 3}
       propertyPath: m_Name
-      value: Earth
+      value: Terre
       objectReference: {fileID: 0}
     - target: {fileID: 5778856836897488550, guid: 16c7a900b4794db4c856bc55496adf0e,
         type: 3}
