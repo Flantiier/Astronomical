@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
 
-public class PickableObject : MonoBehaviour, IPickable
+public class PickableItem : MonoBehaviour, IPickable
 {
+    [SerializeField] private ItemSO itemDatas;
+
     public bool IsInteractable { get; set; } = true;
+    public ItemSO Item { get; set; }
 
     public void Interact(PlayerInteract interactor)
     {
@@ -11,7 +14,7 @@ public class PickableObject : MonoBehaviour, IPickable
 
     public virtual string GetInteractText() => "Pick up item.";
 
-    public Transform GetObjectTransform() => transform;
+    public Transform GetTransform() => transform;
 
     public virtual void SetObjectParent(Transform parent)
     {

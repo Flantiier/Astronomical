@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Key : PickableObject
+public class Key : PickableItem
 {
     public enum KeyType { Silver, Gold }
 

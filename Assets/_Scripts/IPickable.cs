@@ -6,5 +6,7 @@ public interface IPickable : IInteractable
 
     public void ResetObjectParent(Vector3 position);
 
-    public Transform GetObjectTransform();
+    public T GetComponent<T>();
+
+    public Transform GetTransform();
 }

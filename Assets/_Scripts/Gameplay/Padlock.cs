@@ -29,7 +29,7 @@ public class Padlock : MonoBehaviour, IInteractable
         if (pickable == null)
             IsInteractable = false;
         else
-            IsInteractable = pickable.GetObjectTransform().TryGetComponent(out Key m_key) && m_key == key;
+            IsInteractable = pickable.GetTransform().TryGetComponent(out Key m_key) && m_key == key;
     }
 
     public void Interact(PlayerInteract interactor)

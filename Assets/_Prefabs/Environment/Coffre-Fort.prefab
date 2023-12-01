@@ -242,6 +242,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3742984689208107823}
   - component: {fileID: 3904882187046156667}
+  - component: {fileID: 3641693435181263529}
   m_Layer: 0
   m_Name: Coffre-Fort
   m_TagString: Untagged
@@ -263,7 +264,6 @@ Transform:
   m_Children:
   - {fileID: 5262789948021783992}
   - {fileID: 2125887781800964699}
-  - {fileID: 2375135915858538647}
   m_Father: {fileID: 0}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -311,100 +311,34 @@ MonoBehaviour:
   editorProperties:
     enableEditMode: 0
     progressValue: 0
---- !u!1001 &4492813640839541253
-PrefabInstance:
+--- !u!114 &3641693435181263529
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 3742984689208107823}
-    m_Modifications:
-    - target: {fileID: 2211130784973062802, guid: 80ad7fd9a48ed6f4295ee881d66dc732,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2211130784973062802, guid: 80ad7fd9a48ed6f4295ee881d66dc732,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.35
-      objectReference: {fileID: 0}
-    - target: {fileID: 2211130784973062802, guid: 80ad7fd9a48ed6f4295ee881d66dc732,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.35
-      objectReference: {fileID: 0}
-    - target: {fileID: 2211130784973062802, guid: 80ad7fd9a48ed6f4295ee881d66dc732,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.35
-      objectReference: {fileID: 0}
-    - target: {fileID: 2211130784973062802, guid: 80ad7fd9a48ed6f4295ee881d66dc732,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.124
-      objectReference: {fileID: 0}
-    - target: {fileID: 2211130784973062802, guid: 80ad7fd9a48ed6f4295ee881d66dc732,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.294
-      objectReference: {fileID: 0}
-    - target: {fileID: 2211130784973062802, guid: 80ad7fd9a48ed6f4295ee881d66dc732,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.153
-      objectReference: {fileID: 0}
-    - target: {fileID: 2211130784973062802, guid: 80ad7fd9a48ed6f4295ee881d66dc732,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.26234552
-      objectReference: {fileID: 0}
-    - target: {fileID: 2211130784973062802, guid: 80ad7fd9a48ed6f4295ee881d66dc732,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.022827229
-      objectReference: {fileID: 0}
-    - target: {fileID: 2211130784973062802, guid: 80ad7fd9a48ed6f4295ee881d66dc732,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.9618288
-      objectReference: {fileID: 0}
-    - target: {fileID: 2211130784973062802, guid: 80ad7fd9a48ed6f4295ee881d66dc732,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.07442524
-      objectReference: {fileID: 0}
-    - target: {fileID: 2211130784973062802, guid: 80ad7fd9a48ed6f4295ee881d66dc732,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -8.925
-      objectReference: {fileID: 0}
-    - target: {fileID: 2211130784973062802, guid: 80ad7fd9a48ed6f4295ee881d66dc732,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 149.509
-      objectReference: {fileID: 0}
-    - target: {fileID: 2211130784973062802, guid: 80ad7fd9a48ed6f4295ee881d66dc732,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -0.282
-      objectReference: {fileID: 0}
-    - target: {fileID: 3350621562901109017, guid: 80ad7fd9a48ed6f4295ee881d66dc732,
-        type: 3}
-      propertyPath: m_Name
-      value: Montre
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 80ad7fd9a48ed6f4295ee881d66dc732, type: 3}
---- !u!4 &2375135915858538647 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2211130784973062802, guid: 80ad7fd9a48ed6f4295ee881d66dc732,
-    type: 3}
-  m_PrefabInstance: {fileID: 4492813640839541253}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6384697727819572647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6f61cc3b0b80a74fbb2fa3fb1b65db6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 20c0b8996eef3844aa03dbf05ffabae2, type: 2}
+  responses:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3904882187046156667}
+        m_TargetAssemblyTypeName: RotateObjectAnimation, Assembly-CSharp
+        m_MethodName: PlayAnimation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &6661318487675911211
 PrefabInstance:
   m_ObjectHideFlags: 0

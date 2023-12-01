@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BlackFlashlight : PickableObject
+public class BlackFlashlight : PickableItem
 {
     [SerializeField] private RevealingShaderSource revealingScript;
 

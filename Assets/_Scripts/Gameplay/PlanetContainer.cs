@@ -1,15 +1,11 @@
 using System;
 using UnityEngine;
 
-public class PlanetContainer : MonoBehaviour, IInteractable
+public class PlanetContainer : ItemReceptacle, IInteractable
 {
-    [SerializeField] private Transform dropPoint;
+    [SerializeField] private ItemSO requiredItem;
+
     private CapsuleCollider _collider;
-
-    [SerializeField] private PlanetSO requiredPlanet;
-    private Planet _planet;
-
-    public bool IsInteractable { get; set; }
 
     public static event Action OnPlanetPlaced;
     public static int PlanetAmount = 0;
@@ -22,89 +18,60 @@ public class PlanetContainer : MonoBehaviour, IInteractable
     private void FixedUpdate()
     {
         IPickable pickable = Player.Instance.Interactor.GetPickableItem();
-        bool hasPlanet = _planet;
+        bool hasPlanet = GetPlanet();
 
         if (pickable == null && !hasPlanet)
             IsInteractable = false;
         else
-            IsInteractable = hasPlanet || pickable.GetObjectTransform().TryGetComponent(out Planet planet);
+            IsInteractable = hasPlanet || pickable.GetTransform().TryGetComponent(out Planet planet);
     }
 
-    public void Interact(PlayerInteract interactor)
+    public override void Interact(PlayerInteract interactor)
     {
-        bool playerHasObject = interactor.GetPickableItem() != null;
-        bool vesselHasObject = _planet != null;
-
-        //Case 1 : Player has object and vessel don't
-        if (playerHasObject && !vesselHasObject)
-        {
-            PlaceObjectInVessel(interactor);
-            PlanetAmount++;
-        }
-        //Case 2 : Vessel has object and player don't
-        else if (!playerHasObject && vesselHasObject)
-        {
-            PickUpFromVessel(interactor);
-        }
-        //Case 3 : Both have an object
-        else
-        {
-            IPickable lastItem = _planet;
-            lastItem.IsInteractable = true;
-
-            PlaceObjectInVessel(interactor);
-            interactor.PickUpObject(lastItem);
-        }
-
+        base.Interact(interactor);
         OnPlanetPlaced?.Invoke();
     }
 
-    public string GetInteractText()
+    public override string GetInteractText()
     {
         bool playerHasObject = Player.Instance.Interactor.GetPickableItem() != null;
-        bool vesselHasObject = _planet != null;
+        bool vesselHasObject = _currentItem != null;
 
         if (playerHasObject && !vesselHasObject)
         {
-            return "Deposit a planet in vessel.";
+            return "Drop planet.";
         }
         else if (!playerHasObject && vesselHasObject)
         {
-            return "Pick up planet from vessel";
+            return "Pick up planet";
         }
 
-        return "Change current planet.";
+        return "Switch planets.";
     }
 
-    private void PickUpFromVessel(PlayerInteract interactor)
+    protected override void PickUpFromVessel(PlayerInteract interactor)
     {
-        _planet.IsInteractable = true;
-        interactor.PickUpObject(_planet);
-
+        base.PickUpFromVessel(interactor);
         PlanetAmount--;
-        _planet = null;
 
         //Reset collider size and position
         ResetColliderValues();
     }
 
-    private void PlaceObjectInVessel(PlayerInteract interactor)
+    protected override void PlaceObjectInVessel(PlayerInteract interactor)
     {
-        //Get obj from player and place obj in this vessel
-        _planet = (Planet)interactor.GetPickableItem();
-        interactor.DropObjectParent(dropPoint);
-        _planet.IsInteractable = false;
+        base.PlaceObjectInVessel(interactor);
 
         //Set collider and planet position based on mesh dimensions
-        float meshHeight = _planet.GetMeshHeight();
+        float meshHeight = GetPlanet().GetMeshHeight();
         SetColliderValues(meshHeight);
-        _planet.transform.localPosition = new Vector3(0f, meshHeight / 2f, 0f);
+        _currentItem.GetTransform().localPosition = new Vector3(0f, meshHeight / 2f, 0f);
     }
 
-    public bool HasRequiredPlanet()
-    {
-        return requiredPlanet == _planet.GetPlanetInfos();
-    }
+
+    private Planet GetPlanet() => _currentItem.GetComponent<Planet>();
+    public bool HasRequiredPlanet() => requiredItem == GetPlanet().GetPlanetDatas();
+
 
     private void SetColliderValues(float meshHeight)
     {

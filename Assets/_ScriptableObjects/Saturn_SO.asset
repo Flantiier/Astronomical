@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6e5a95821f6c6445bb25a60eb4efce1, type: 3}
+  m_Script: {fileID: 11500000, guid: f35170dee6a8828449c2770c4e90346a, type: 3}
   m_Name: Saturn_SO
   m_EditorClassIdentifier: 
-  planetName: Saturn
-  solarSystemIndex: 6
+  itemName: Saturn
+  icon: {fileID: 0}

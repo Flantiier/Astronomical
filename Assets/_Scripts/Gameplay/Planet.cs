@@ -1,13 +1,8 @@
 using UnityEngine;
 
-public class Planet : PickableObject, IPickable
+public class Planet : PickableItem, IPickable
 {
-    [SerializeField] private PlanetSO planetSO;
-
-    public PlanetSO GetPlanetInfos()
-    {
-        return planetSO;
-    }
+    public ItemSO GetPlanetDatas() => Item;
 
     public float GetMeshHeight()
     {

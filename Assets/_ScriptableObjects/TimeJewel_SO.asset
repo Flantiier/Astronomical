@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f35170dee6a8828449c2770c4e90346a, type: 3}
-  m_Name: Uranus_SO
+  m_Name: TimeJewel_SO
   m_EditorClassIdentifier: 
-  itemName: Uranus
+  itemName: Time Jewel
   icon: {fileID: 0}

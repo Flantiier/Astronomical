@@ -49,7 +49,7 @@ public class PlayerInteract : MonoBehaviour
     {
         //Already carrying an object
         if (_carriedObject != null)
-            DropObjectWorld(obj.GetObjectTransform().position);
+            DropObjectWorld(obj.GetTransform().position);
 
         _carriedObject = obj;
         obj.SetObjectParent(handTransform);
