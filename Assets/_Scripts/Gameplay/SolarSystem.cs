@@ -3,23 +3,23 @@ using UnityEngine.Events;
 
 public class SolarSystem : MonoBehaviour
 {
-    [SerializeField] private PlanetContainer[] containers;
+    [SerializeField] private PlanetReceptacle[] containers;
 
     [SerializeField] private UnityEvent SolarSystemValid;
 
     private void OnEnable()
     {
-        PlanetContainer.OnPlanetPlaced += CheckSolarSystemOrder;
+        PlanetReceptacle.OnPlanetPlaced += CheckSolarSystemOrder;
     }
 
     private void OnDisable()
     {
-        PlanetContainer.OnPlanetPlaced -= CheckSolarSystemOrder;
+        PlanetReceptacle.OnPlanetPlaced -= CheckSolarSystemOrder;
     }
 
     private void CheckSolarSystemOrder()
     {
-        if (PlanetContainer.PlanetAmount < containers.Length)
+        if (PlanetReceptacle.PlanetAmount < containers.Length)
         {
             Debug.Log("Missing planets...");
             return;
@@ -27,7 +27,7 @@ public class SolarSystem : MonoBehaviour
 
         for (int i = 0; i < containers.Length; i++)
         {
-            PlanetContainer targetVessel = containers[i];
+            PlanetReceptacle targetVessel = containers[i];
 
             if (!targetVessel.HasRequiredPlanet())
             {
@@ -44,7 +44,7 @@ public class SolarSystem : MonoBehaviour
 
     private void DisableVessels()
     {
-        foreach (PlanetContainer vessel in containers)
+        foreach (PlanetReceptacle vessel in containers)
         {
             vessel.enabled = false;
             vessel.IsInteractable = false;

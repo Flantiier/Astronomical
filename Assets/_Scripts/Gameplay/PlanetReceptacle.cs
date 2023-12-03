@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class PlanetContainer : ItemReceptacle, IInteractable
+public class PlanetReceptacle : ItemReceptacle, IInteractable
 {
     [SerializeField] private ItemSO requiredItem;
 
