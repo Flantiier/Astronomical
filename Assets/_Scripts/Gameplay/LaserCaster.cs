@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class LasterCaster : MonoBehaviour
+public class LaserCaster : MonoBehaviour
 {
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private float maxDistance = 10f;
@@ -52,11 +52,24 @@ public class Laser
             //Hit an unreflective surface
             else
                 AddLaserPoint(hit.point);
+
+            CheckHit(hit.collider.gameObject);
         }
         //Hit nothing
         else
         {
             AddLaserPoint(ray.GetPoint(maxDistance));
+        }
+    }
+
+    /// <summary>
+    /// Checking if the laser hits a padlock
+    /// </summary>
+    private void CheckHit(GameObject hitObj)
+    {
+        if(hitObj.TryGetComponent(out LaserPadlock padlock))
+        {
+            padlock.UnlockPadlock();
         }
     }
 
