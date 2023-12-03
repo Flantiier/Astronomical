@@ -18,12 +18,17 @@ public class PlanetContainer : ItemReceptacle, IInteractable
     private void FixedUpdate()
     {
         IPickable playerObject = Player.Instance.Interactor.GetPickableItem();
-        bool hasPlanet = _currentItem != null && GetPlanet();
 
-        if (playerObject == null && !hasPlanet)
-            IsInteractable = false;
-        else
-            IsInteractable = hasPlanet || playerObject.GetTransform().TryGetComponent(out Planet planet);
+        //If player doesn't hold an object, interaction is possible only if there is a planet on this receptacle
+        if (playerObject == null)
+        {
+            bool hasPlanet = _currentItem != null && GetPlanet();
+            IsInteractable = hasPlanet;
+            return;
+        }
+
+        //Player can interact if he's carrying a planet
+        IsInteractable = playerObject.GetGameObject().TryGetComponent(out Planet planet);
     }
 
     public override void Interact(PlayerInteract interactor)
