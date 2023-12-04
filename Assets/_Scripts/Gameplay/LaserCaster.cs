@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+[ExecuteAlways]
 public class LaserCaster : MonoBehaviour
 {
     [SerializeField] private LineRenderer lineRenderer;
@@ -13,7 +14,7 @@ public class LaserCaster : MonoBehaviour
         laser = new Laser(lineRenderer);
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         laser.ClearLaser();
         laser.CastLaser(transform.position, transform.forward, maxDistance);
@@ -21,6 +22,7 @@ public class LaserCaster : MonoBehaviour
     }
 }
 
+[System.Serializable, ExecuteInEditMode]
 public class Laser
 {
     public LineRenderer LaserRenderer { get; private set; }
