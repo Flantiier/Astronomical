@@ -25,7 +25,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Mask:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_c50560621d544b70b3e228ca9ab8003a_Texture_1_Texture2D:
+        m_Texture: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture2DAsset_a2678b4814ba475e860b0e4e31761001_Out_0_Texture2D:
@@ -46,18 +50,41 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _CenterBrigthness: 1.94
+    - _CenterMaskStrength: 0.5
+    - _CenterSize: 0.383
+    - _CenterStrength: 1.464
+    - _DetailsRange: 0.0669
+    - _DetailsStrength: 0.576
     - _Dissolve: 2.85
-    - _DissolveAmount: 2.54
-    - _NoiseScale: 10.43
+    - _DissolveAmount: 3
+    - _EdgeBrightness: 0.412
+    - _EdgeRange: 0.05
+    - _EdgeSize: 0.2199
+    - _NoiseScale: 100
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _RotateSpeed: 1
+    - _RotateSpeed: 0.5
+    - _RotateSpeed_1: 1
     - _Scale: 15
     - _Speed: 1
+    - _StarMaskSmoothness: 0.7
+    - _StarMaskStrength: -0.5
+    - _StarsAmount: 0.7619
+    - _StarsMaskSmoothness: 0.748
+    - _StarsMaskStrength: -0.986
+    - _StarsNoise: 300
+    - _StarsScale: 300
     - _Strength: 8.3
-    - _TwirlStrength: 10
+    - _TwirlNoise: 15
+    - _TwirlStrength: 8
     m_Colors:
-    - _Color: {r: 0.003589932, g: 0, b: 1.5277259, a: 0}
+    - _CenterColorIN: {r: 5.7411814, g: 1.0326362, b: 12.877578, a: 0}
+    - _CenterColorOUT: {r: 0.63634604, g: 0.10505711, b: 0.63634604, a: 0}
+    - _Color: {r: 1.94824, g: 0.2782725, b: 6.554866, a: 0}
+    - _DetailsColor: {r: 2.0626974, g: 0.21104103, b: 3.4415908, a: 0}
+    - _EdgeColor: {r: 5.036919, g: 0.9901998, b: 5.382624, a: 0}
+    - _StarsColor: {r: 120.12246, g: 41.362923, b: 83.72985, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &8506191604070337087
 MonoBehaviour:
