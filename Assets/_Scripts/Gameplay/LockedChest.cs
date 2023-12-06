@@ -1,4 +1,5 @@
 using System.Text;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class LockedChest : MonoBehaviour
@@ -65,10 +66,8 @@ public class LockedChest : MonoBehaviour
     /// </summary>
     public void CheckCodeValidity()
     {
-        bool correctCode = VerifyCurrentCode();
-
         //Wrong code
-        if (!correctCode)
+        if (!VerifyCurrentCode())
         {
             Debug.Log("Wrong code entered");
             return;
@@ -79,15 +78,25 @@ public class LockedChest : MonoBehaviour
     }
 
     /// <summary>
-    /// Return a boolean which represents current code validity
+    /// Compare mechanisms values and chest valid code
     /// </summary>
     private bool VerifyCurrentCode()
     {
-        string code = "";
+        string[] splittedCode = validCode.Split(", ");
 
-        foreach (ChestLockingMechanism item in mechanisms)
-            code += item.CurrentPosition.ToString();
+        for (int i = 0; i < splittedCode.Length; i++)
+        {
+            string mechanismValue = mechanisms[i].CurrentPosition.ToString();
 
-        return code == validCode;
+            //Continue if the value is correct
+            if (splittedCode[i] == mechanismValue)
+                continue;
+            //Else, we stop and return false
+            else
+                return false;
+        }
+
+        //Code is correct, return true
+        return true;
     }
 }
