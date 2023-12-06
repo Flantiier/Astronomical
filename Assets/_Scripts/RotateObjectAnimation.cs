@@ -6,10 +6,12 @@ using UnityEngine;
 public class RotateObjectAnimation : MonoBehaviour
 {
     enum RotateDirection { Clockwise, CounterClockwise }
+    enum RotateAxis { X, Y, Z }
 
     [Header("Animation properties")]
     [SerializeField] private Transform targetTransform;
     [SerializeField] private RotateDirection rotateDirection;
+    [SerializeField] private RotateAxis rotateAxis = RotateAxis.Y;
 
     [Range(0f, 360f)] public float startAngle = 0f;
     [SerializeField, Range(1f, 360f)] private float targetAngle = 90f;
@@ -34,7 +36,6 @@ public class RotateObjectAnimation : MonoBehaviour
     [ContextMenu("Play Animation")]
     public void PlayAnimation() => StartCoroutine("RotateAnimationRoutine");
 
-
     /// <summary>
     /// Simulates a rotation animation around a target tarnsform with a given angle
     /// </summary>
@@ -43,11 +44,10 @@ public class RotateObjectAnimation : MonoBehaviour
         if (!targetTransform)
             return;
 
-        float animProgress = animationCurve.Evaluate(progressValue) * targetAngle;
-        float animValue = rotateDirection == RotateDirection.Clockwise ? startAngle + animProgress : startAngle - animProgress;
+        float evaluatedAngle = animationCurve.Evaluate(progressValue) * targetAngle;
+        float angleValue = rotateDirection == RotateDirection.Clockwise ? startAngle + evaluatedAngle : startAngle - evaluatedAngle;
 
-        Vector3 eulers = targetTransform.eulerAngles;
-        targetTransform.eulerAngles = new Vector3(eulers.x, animValue, eulers.z);
+        ModifyEulersVector(angleValue);
     }
 
     /// <summary>
@@ -84,12 +84,32 @@ public class RotateObjectAnimation : MonoBehaviour
     /// </summary>
     private void ResetAnimation()
     {
-        Vector3 eulers = targetTransform.eulerAngles;
-        targetTransform.eulerAngles = new Vector3(eulers.x, startAngle, eulers.z);
+        ModifyEulersVector(startAngle);
+    }
+
+    /// <summary>
+    /// Modify eulers on rotate axis by a given value
+    /// </summary>
+    private void ModifyEulersVector(float targetValue)
+    {
+        Quaternion rotation = targetTransform.localRotation;
+
+        switch (rotateAxis)
+        {
+            case RotateAxis.X:
+                targetTransform.localRotation = Quaternion.Euler(targetValue, rotation.y, rotation.z);
+                break;
+            case RotateAxis.Y:
+                targetTransform.localRotation = Quaternion.Euler(rotation.x, targetValue, rotation.z);
+                break;
+            case RotateAxis.Z:
+                targetTransform.localRotation = Quaternion.Euler(rotation.x, rotation.y, targetValue);
+                break;
+        }
     }
 }
 
-[System.Serializable]
+[Serializable]
 public class RotateAnimationEditorProperties
 {
     public bool enableEditMode = false;
