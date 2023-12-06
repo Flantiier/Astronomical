@@ -52,15 +52,15 @@ Material:
     m_Floats:
     - _CenterBrigthness: 1.94
     - _CenterMaskStrength: 0.5
-    - _CenterSize: 0.383
-    - _CenterStrength: 1.464
-    - _DetailsRange: 0.0669
+    - _CenterSize: 0.172
+    - _CenterStrength: 0.92
+    - _DetailsRange: 0.081
     - _DetailsStrength: 0.576
     - _Dissolve: 2.85
     - _DissolveAmount: 3
-    - _EdgeBrightness: 0.412
+    - _EdgeBrightness: 0.313
     - _EdgeRange: 0.05
-    - _EdgeSize: 0.2199
+    - _EdgeSize: 0.211
     - _NoiseScale: 100
     - _QueueControl: 0
     - _QueueOffset: 0
