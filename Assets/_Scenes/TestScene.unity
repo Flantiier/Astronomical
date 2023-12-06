@@ -1354,7 +1354,7 @@ MonoBehaviour:
   - {fileID: 1677110941}
   - {fileID: 1791261877}
   - {fileID: 670004092}
-  chestCode: 0000
+  validCode: 1, 2, 3, 4
   mechanismSteps: 12
   mechanismPadding: 30
 --- !u!1 &901918043

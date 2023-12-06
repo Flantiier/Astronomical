@@ -1,9 +1,10 @@
+using System.Text;
 using UnityEngine;
 
 public class LockedChest : MonoBehaviour
 {
     [SerializeField] private ChestLockingMechanism[] mechanisms;
-    [SerializeField] private string chestCode = "0,0,0,0";
+    [SerializeField] private string validCode = "1, 2, 3, 4";
 
     [SerializeField] private int mechanismSteps = 12;
     [SerializeField] private float mechanismPadding = 30f;
@@ -19,40 +20,44 @@ public class LockedChest : MonoBehaviour
     /// <summary>
     /// Generate a random code and set each mechanism's index in the array to a random value
     /// </summary>
+    [ContextMenu("Randomize mechanisms")]
     private void RandomizeMechanisms()
     {
         string randomCode = GenerateRandomCode();
 
         //Restart this function to generate another code
-        if (randomCode == chestCode)
+        if (randomCode == validCode)
         {
             RandomizeMechanisms();
             return;
         }
-        
+
+        Debug.Log("Chest random code : " + randomCode);
+
         //Set index for each mechanism
-        for (int i = 0; i < mechanisms.Length; i++)
+        string[] splittedCode = randomCode.Split(", ");
+        for (int i = 0; i < splittedCode.Length; i++)
         {
-            int m_Index = randomCode.ToCharArray()[i];
-            mechanisms[i].RotateMechanism(m_Index);
+            int value = int.Parse(splittedCode[i]);
+            mechanisms[i].RotateMechanism(value);
         }
     }
 
     /// <summary>
-    /// Generate a random code which fits chest's mechanisms amount
+    /// Generate a random index for each mechanism sets in the array
     /// </summary>
     private string GenerateRandomCode()
     {
-        string generatedCode = "";
-        for (int i = 0; i < mechanisms.Length; i++)
+        int length = mechanisms.Length;
+        StringBuilder randomCode = new StringBuilder();
+
+        for (int i = 0; i < length; i++)
         {
-            Debug.Log("here");
             int randomIndex = Random.Range(0, Steps);
-            generatedCode += randomIndex;
+            randomCode.Append(i < length - 1 ? $"{randomIndex}, " : randomIndex);
         }
 
-        Debug.Log("Generated code is : " + generatedCode);
-        return generatedCode;
+        return randomCode.ToString();
     }
 
     /// <summary>
@@ -83,6 +88,6 @@ public class LockedChest : MonoBehaviour
         foreach (ChestLockingMechanism item in mechanisms)
             code += item.CurrentPosition.ToString();
 
-        return code == chestCode;
+        return code == validCode;
     }
 }
