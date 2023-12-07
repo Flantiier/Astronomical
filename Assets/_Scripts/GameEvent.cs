@@ -5,6 +5,8 @@ using UnityEngine.Events;
 [CreateAssetMenu]
 public class GameEvent : ScriptableObject
 {
+    public string eventName = "Unamed";
+
     //Free listeners
     public UnityEvent responses { get; set; }
     //Events with GameEventListenerClass

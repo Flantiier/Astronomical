@@ -31,7 +31,7 @@ public class GameEventManager : MonoBehaviour
         foreach (GameEvent item in events)
         {
             GameEventEditorButton instance = Instantiate(buttonPrefab, grid);
-            instance.SetButtonTitle(item.name);
+            instance.SetButtonTitle(item.eventName);
             instance.Button.onClick.AddListener(item.Raise);
             instance.Button.onClick.AddListener(HideContentPanel);
         }

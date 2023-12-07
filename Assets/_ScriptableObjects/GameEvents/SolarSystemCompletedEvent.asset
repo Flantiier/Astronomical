@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f55524aa3b371634c86c637aa4f1dbdc, type: 3}
   m_Name: SolarSystemCompletedEvent
   m_EditorClassIdentifier: 
+  eventName: Complete Solar System

@@ -1,22 +1,19 @@
 using System.Text;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class LockedChest : MonoBehaviour
 {
     [Header("Chest properties")]
-    [SerializeField] private ChestLockingMechanism[] mechanisms;
-    [SerializeField] private string validCode = "1, 2, 3, 4";
-
-    [Header("Mechanisms properties")]
     [SerializeField] private int mechanismSteps = 12;
-    [SerializeField] private float mechanismPadding = 30f;
+    [Tooltip("Always put a coma and a space between numbers.")]
+    [SerializeField] private string validCode = "1, 2, 3, 4";
+    [SerializeField] private ChestLockingMechanism[] mechanisms;
 
     [Header("Events")]
-    [SerializeField] private UnityEvent chestUnlocked;
+    [SerializeField] private GameEvent chestUnlockedEvent;
 
     public int Steps => mechanismSteps;
-    public float Padding => mechanismPadding;
+    public float Padding => 360f / Steps;
 
     private void Awake()
     {
@@ -66,11 +63,15 @@ public class LockedChest : MonoBehaviour
         return randomCode.ToString();
     }
 
-    [ContextMenu("Open chest")]
-    private void OpenChest()
+    /// <summary>
+    /// Disable mechanisms scripts and call an event
+    /// </summary>
+    private void UnlockChest()
     {
-        Debug.Log("Correct code entered");
-        chestUnlocked?.Invoke();
+        foreach (ChestLockingMechanism item in mechanisms)
+            item.IsInteractable = false;
+
+        chestUnlockedEvent.Raise();
     }
 
     /// <summary>
@@ -83,7 +84,7 @@ public class LockedChest : MonoBehaviour
             return;
 
         //Correct code
-        OpenChest();
+        UnlockChest();
     }
 
     /// <summary>
