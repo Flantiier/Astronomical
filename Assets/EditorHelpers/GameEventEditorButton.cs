@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class GameEventEditorButton : MonoBehaviour
 {
     [SerializeField] private Button button;
+    [SerializeField] private Color disabledTextColor = Color.grey;
     public Button Button => button;
 
     private void Start()
@@ -26,5 +27,7 @@ public class GameEventEditorButton : MonoBehaviour
     private void DisableButtonOnClick()
     {
         button.interactable = false;
+        TextMeshProUGUI meshPro = GetComponentInChildren<TextMeshProUGUI>();
+        meshPro.color = disabledTextColor;
     }
 }

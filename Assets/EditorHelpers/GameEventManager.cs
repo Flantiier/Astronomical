@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class GameEventManager : MonoBehaviour
 {
-    [SerializeField] private GameEvent[] events;
     [SerializeField] private GameEventEditorButton buttonPrefab;
     [SerializeField] private Transform content;
     [SerializeField] private Transform grid;
@@ -25,9 +24,16 @@ public class GameEventManager : MonoBehaviour
         }
     }
 
+    [ContextMenu("Get files")]
+    private void GetFiles()
+    {
+    }
+
     //Create buttons for each event in gameEvent array
     private void CreateButtons()
     {
+        GameEvent[] events = Resources.LoadAll<GameEvent>("GameEvents");
+
         foreach (GameEvent item in events)
         {
             GameEventEditorButton instance = Instantiate(buttonPrefab, grid);
