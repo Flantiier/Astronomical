@@ -1,24 +1,24 @@
+using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SimpleInteractionObject : MonoBehaviour, IInteractable
 {
-    [SerializeField] private string interactText = "Interact with object.";
+    private enum InteractionType { Single, Multiple };
 
-    [SerializeField] private Animator animator;
-    [SerializeField] private string propertyName = "";
+    [SerializeField] private string interactText = "Interact with object.";
+    [SerializeField] private InteractionType interactType = InteractionType.Multiple;
+    [SerializeField] private UnityEvent interactEvent;
 
     public bool IsInteractable { get; set; } = true;
 
-    public virtual void Interact(PlayerInteract interactor)
+    public void Interact(PlayerInteract interactor)
     {
-        PlayInteractAnimation();
+        Debug.Log("Interact");
+
+        interactEvent?.Invoke();
+        IsInteractable = Convert.ToBoolean((int)interactType);
     }
 
     public string GetInteractText() => interactText;
-
-    protected void PlayInteractAnimation()
-    {
-        bool reverseValue = !animator.GetBool(propertyName);
-        animator.SetBool(propertyName, reverseValue);
-    }
 }
