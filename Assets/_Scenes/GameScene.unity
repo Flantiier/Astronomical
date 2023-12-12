@@ -6672,7 +6672,7 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 11
+  m_Priority: 9
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
@@ -13016,22 +13016,87 @@ PrefabInstance:
     - target: {fileID: 3247970768907032709, guid: d040fc829b425604e94d3c8a8ff168f7,
         type: 3}
       propertyPath: onTelescopeExit.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3247970768907032709, guid: d040fc829b425604e94d3c8a8ff168f7,
         type: 3}
       propertyPath: onTelescopeControlled.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247970768907032709, guid: d040fc829b425604e94d3c8a8ff168f7,
+        type: 3}
+      propertyPath: onTelescopeExit.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3247970768907032709, guid: d040fc829b425604e94d3c8a8ff168f7,
         type: 3}
       propertyPath: onTelescopeExit.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 998959381}
+    - target: {fileID: 3247970768907032709, guid: d040fc829b425604e94d3c8a8ff168f7,
+        type: 3}
+      propertyPath: onTelescopeExit.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247970768907032709, guid: d040fc829b425604e94d3c8a8ff168f7,
+        type: 3}
+      propertyPath: onTelescopeControlled.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247970768907032709, guid: d040fc829b425604e94d3c8a8ff168f7,
+        type: 3}
+      propertyPath: onTelescopeExit.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: set_Priority
       objectReference: {fileID: 0}
     - target: {fileID: 3247970768907032709, guid: d040fc829b425604e94d3c8a8ff168f7,
         type: 3}
       propertyPath: onTelescopeControlled.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 998959381}
+    - target: {fileID: 3247970768907032709, guid: d040fc829b425604e94d3c8a8ff168f7,
+        type: 3}
+      propertyPath: onTelescopeControlled.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247970768907032709, guid: d040fc829b425604e94d3c8a8ff168f7,
+        type: 3}
+      propertyPath: onTelescopeControlled.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: set_Priority
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247970768907032709, guid: d040fc829b425604e94d3c8a8ff168f7,
+        type: 3}
+      propertyPath: onTelescopeExit.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Cinemachine.CinemachineVirtualCameraBase, Cinemachine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247970768907032709, guid: d040fc829b425604e94d3c8a8ff168f7,
+        type: 3}
+      propertyPath: onTelescopeExit.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247970768907032709, guid: d040fc829b425604e94d3c8a8ff168f7,
+        type: 3}
+      propertyPath: onTelescopeControlled.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Cinemachine.CinemachineVirtualCameraBase, Cinemachine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247970768907032709, guid: d040fc829b425604e94d3c8a8ff168f7,
+        type: 3}
+      propertyPath: onTelescopeControlled.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247970768907032709, guid: d040fc829b425604e94d3c8a8ff168f7,
+        type: 3}
+      propertyPath: onTelescopeControlled.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247970768907032709, guid: d040fc829b425604e94d3c8a8ff168f7,
+        type: 3}
+      propertyPath: onTelescopeExit.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247970768907032709, guid: d040fc829b425604e94d3c8a8ff168f7,
+        type: 3}
+      propertyPath: onTelescopeControlled.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3379359666333780750, guid: d040fc829b425604e94d3c8a8ff168f7,
         type: 3}
@@ -13684,7 +13749,7 @@ PrefabInstance:
     - target: {fileID: 4061746738245722058, guid: 934b6c163c07c2b48a32f22a8bc44c09,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4557105195053868887, guid: 934b6c163c07c2b48a32f22a8bc44c09,
         type: 3}
@@ -14479,37 +14544,37 @@ PrefabInstance:
     - target: {fileID: 6630221656263789298, guid: 7c9d51e615d3bcb4abcf6639921d9ba5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.49
+      value: 5.46
       objectReference: {fileID: 0}
     - target: {fileID: 6630221656263789298, guid: 7c9d51e615d3bcb4abcf6639921d9ba5,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.84
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 6630221656263789298, guid: 7c9d51e615d3bcb4abcf6639921d9ba5,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.86
+      value: 5.15
       objectReference: {fileID: 0}
     - target: {fileID: 6630221656263789298, guid: 7c9d51e615d3bcb4abcf6639921d9ba5,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.45475525
+      value: -0.031171821
       objectReference: {fileID: 0}
     - target: {fileID: 6630221656263789298, guid: 7c9d51e615d3bcb4abcf6639921d9ba5,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.16155292
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6630221656263789298, guid: 7c9d51e615d3bcb4abcf6639921d9ba5,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.8233357
+      value: -0.9995141
       objectReference: {fileID: 0}
     - target: {fileID: 6630221656263789298, guid: 7c9d51e615d3bcb4abcf6639921d9ba5,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.29869175
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6630221656263789298, guid: 7c9d51e615d3bcb4abcf6639921d9ba5,
         type: 3}
@@ -14529,7 +14594,7 @@ PrefabInstance:
     - target: {fileID: 7655010132330026634, guid: 7c9d51e615d3bcb4abcf6639921d9ba5,
         type: 3}
       propertyPath: field of view
-      value: 70
+      value: 60.000004
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
