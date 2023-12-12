@@ -7,6 +7,7 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField] private float interactRange = 3f;
     [SerializeField] private LayerMask interactMask;
 
+    [SerializeField] private Transform cameraTransform;
     [SerializeField] private Transform handTransform;
     private IPickable _carriedObject;
 
@@ -30,9 +31,8 @@ public class PlayerInteract : MonoBehaviour
 
     public IInteractable GetInteractableObject(out IInteractable interactable)
     {
-        Transform camTransform = Camera.main.transform;
-        Vector3 origin = camTransform.position;
-        Vector3 direction = camTransform.forward;
+        Vector3 origin = cameraTransform.position;
+        Vector3 direction = cameraTransform.forward;
 
         if (Physics.Raycast(origin, direction, out RaycastHit hitInfo, interactRange, interactMask))
         {

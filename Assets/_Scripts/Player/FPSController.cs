@@ -7,6 +7,7 @@ public class FPSController : MonoBehaviour
 {
     #region Variables
     [SerializeField] private InputReader inputReader;
+    [SerializeField] private Transform cameraTransform;
 
     [Header("Motion & View")]
     [SerializeField] private float mouseSensitivity = 100f;
@@ -18,7 +19,6 @@ public class FPSController : MonoBehaviour
     [Header("Physics")]
     [SerializeField] private float gravity = 3f;
 
-    private Transform _camera;
     private CharacterController _cc;
 
     private Vector2 _rawInputs;
@@ -41,7 +41,6 @@ public class FPSController : MonoBehaviour
     private void Awake()
     {
         _cc = GetComponent<CharacterController>();
-        _camera = GetComponentInChildren<Camera>().transform;
     }
 
     private void OnEnable()
@@ -135,7 +134,7 @@ public class FPSController : MonoBehaviour
         _xRotation -= mouseY;
         _xRotation = Mathf.Clamp(_xRotation, -90f, 90f);
 
-        _camera.transform.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
+        cameraTransform.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
         transform.Rotate(Vector3.up * mouseX);
     }
 
